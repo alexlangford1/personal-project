@@ -1,0 +1,19 @@
+.app {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.349);
+    width: 100vw;
+    ;
+    
+}
+
+.icon {
+    background: white;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}

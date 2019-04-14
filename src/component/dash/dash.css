@@ -1,0 +1,16 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.popdown {
+    display: none;
+}
+.popUp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
