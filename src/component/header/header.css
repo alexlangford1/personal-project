@@ -2,18 +2,27 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: rgba(0, 0, 0, 0.349);
+    background: rgba(8, 8, 8, 0.61);
     width: 100vw;
-    ;
+    height: 9vh;
     
 }
 
-.icon {
-    background: white;
-    height: 40px;
-    width: 40px;
+.icons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 50%;
+    width: 120px;
+    margin-right: -70px;
+}
+
+.fas {
+    background: rgba(179, 176, 176, 0.637);
+    padding: 10px;
+    color: white;
+    border-radius: 10px;  
+}
+
+.fas:hover {
+    background: rgba(51, 50, 50, 0.637);
 }

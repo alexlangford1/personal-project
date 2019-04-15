@@ -2,6 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const massive = require("massive")
 const session = require("express-session")
+const ctrl = require("./controller")
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 
@@ -25,6 +26,16 @@ app.use(
         },
     }),
 )
+
+app.post("/auth/register", ctrl.register)
+app.post("/auth/login", ctrl.login)
+app.get("/auth/user-data", ctrl.userData)
+app.post("/api/vacation", ctrl.addVacation)
+// app.get('/api/vacation', ctrl.getVacation)
+app.get("/logout", (req, res) => {
+    req.session.destroy()
+    res.redirect("http://localhost:3000/#/")
+})
 
 app.listen(SERVER_PORT, () => {
     console.log(`Bruhhh ${SERVER_PORT}`)

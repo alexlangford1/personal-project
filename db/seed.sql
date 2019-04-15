@@ -16,7 +16,7 @@ CREATE TABLE "list_item"
 (
     "list_item_id" serial NOT NULL,
     "list_id" serial NOT NULL,
-    "list_item_name" varchar(180) NOT NULL,
+    "list_item_name" text NOT NULL,
     "description" varchar(180) NOT NULL,
     CONSTRAINT list_item_pk PRIMARY KEY ("list_item_id")
 );
