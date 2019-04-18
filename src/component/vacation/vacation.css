@@ -1,0 +1,62 @@
+.vacation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-top: 9vh; */
+    height: 100vh;
+    text-align: center;
+    background-image: url('../../img/sunset.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+
+
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+.vacay-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.vacay-map {
+    border-bottom: 1px solid white;
+    width: 250px;
+    height: 200px;
+    background: rgba(179, 176, 176, 0.637);
+    margin: 0px 40px 40px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.vacay-map:hover {
+    background: rgba(151, 151, 151, 0.637);
+
+}
+
+
+.edit{
+    font-size: .8rem;
+    background: none;
+    opacity: .9;
+    z-index: 12;
+    position: relative;
+    left: 105px;
+    top: -45px;
+}
+.qwe {
+    margin-top: 240px
+}
+.wordz {
+    margin-bottom: 40px
+}

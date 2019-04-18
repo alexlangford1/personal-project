@@ -1,8 +1,14 @@
 
+drop table users cascade;
+drop table vacation cascade;
+drop table list cascade;
+drop table comment cascade;
+drop table list_item cascade;
+
+
 CREATE TABLE "users"
 (
     "id" serial NOT NULL,
-    "user_name" varchar(100) NOT NULL UNIQUE,
     "email" varchar(100) NOT NULL UNIQUE,
     "first_name" varchar(100) NOT NULL,
     "last_name" varchar(100) NOT NULL,
@@ -15,9 +21,9 @@ CREATE TABLE "users"
 CREATE TABLE "list_item"
 (
     "list_item_id" serial NOT NULL,
-    "list_id" serial NOT NULL,
+    "list_id" int NOT NULL,
     "list_item_name" text NOT NULL,
-    "description" varchar(180) NOT NULL,
+    "description" varchar(180),
     CONSTRAINT list_item_pk PRIMARY KEY ("list_item_id")
 );
 
@@ -26,7 +32,7 @@ CREATE TABLE "list_item"
 CREATE TABLE "list"
 (
     "list_id" serial NOT NULL,
-    "vacation_id" serial NOT NULL,
+    "vacation_id" int NOT NULL,
     "list_name" varchar(180) NOT NULL,
     CONSTRAINT list_pk PRIMARY KEY ("list_id")
 );
@@ -36,7 +42,7 @@ CREATE TABLE "list"
 CREATE TABLE "vacation"
 (
     "vacation_id" serial NOT NULL,
-    "users_id" serial NOT NULL,
+    "users_id" int NOT NULL,
     "vacation_name" varchar(100) NOT NULL,
     CONSTRAINT vacation_pk PRIMARY KEY ("vacation_id")
 );
@@ -46,7 +52,7 @@ CREATE TABLE "vacation"
 CREATE TABLE "comment"
 (
     "comment_id" serial NOT NULL,
-    "list_item_id" serial NOT NULL,
+    "list_item_id" int NOT NULL,
     "comment" TEXT NOT NULL,
     CONSTRAINT comment_pk PRIMARY KEY ("comment_id")
 );

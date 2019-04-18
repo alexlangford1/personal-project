@@ -1,10 +1,13 @@
 .app {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background: rgba(8, 8, 8, 0.61);
     width: 100vw;
     height: 9vh;
+    position: fixed;
+    top: 0px;
+    z-index: 10;
     
 }
 
@@ -13,7 +16,7 @@
     justify-content: space-between;
     align-items: center;
     width: 120px;
-    margin-right: -70px;
+    margin-right: 10px;
 }
 
 .fas {
@@ -25,4 +28,9 @@
 
 .fas:hover {
     background: rgba(51, 50, 50, 0.637);
+}
+.nope {
+    background: none;
+    margin-left: 10px;
+    
 }

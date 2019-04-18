@@ -21,7 +21,7 @@ export default class Register extends Component {
             last_name,
             password,
         })
-        if (res.data.loggedIn) this.props.history.push("/dashboard")
+        if (res.data.loggedIn) this.props.history.push("/vacations")
         else alert("Registration failed")
     }
 

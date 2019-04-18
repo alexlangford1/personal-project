@@ -15,7 +15,7 @@ export default class Welcome extends Component {
     login = async () => {
         const { email, pass } = this.state
         const res = await axios.post("/auth/login", { email, pass })
-        if (res.data.loggedIn) this.props.history.push("/dashboard")
+        if (res.data.loggedIn) this.props.history.push("/vacations")
         else alert("Login failed")
     }
 

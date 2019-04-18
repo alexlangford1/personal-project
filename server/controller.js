@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs")
 
 module.exports = {
-
     register: async (req, res) => {
         const { email, first_name, last_name, password } = req.body
         const db = req.app.get("db")
@@ -30,11 +29,12 @@ module.exports = {
         })
     },
 
-
     login: async (req, res) => {
         const { email, pass } = req.body
         const db = req.app.get("db")
-        const account = await db.get_acc_by_email([email])
+        const account = await db
+            .get_acc_by_email([email])
+            .catch((err) => console.log(err))
         if (account.length === 0) {
             return res.status(200).send({ message: "Account not found." })
         }
@@ -56,13 +56,58 @@ module.exports = {
 
     userData(req, res) {
         if (req.session.user) res.status(200).send(req.session.user)
-        else res.status(401).send('Please log in');
-      },
+        else res.status(401).send("Please log in")
+    },
 
-      addVacation: async (req, res) => {
+    addVacation: async (req, res) => {
         const { vacation_name } = req.body
+        const { id } = req.session.user
         const db = req.app.get("db")
-        const newVacation = await db.create_vacation([vacation_name])
+        const newVacation = await db.create_vacation([vacation_name, id])
         res.status(200).send(newVacation)
-      }
+    },
+    addList: async (req, res) => {
+        const { list_name } = req.body
+        const { id } = req.params
+        const db = req.app.get("db")
+        const newList = await db.create_list([list_name, id])
+        res.status(200).send(newList)
+    },
+
+    getVacation: async (req, res) => {
+        const db = req.app.get("db")
+        const { id } = req.session.user
+        // console.log(id)
+        const allVacations = await db
+            .get_vacation(id)
+            .catch((err) => console.log(99999, err))
+        // console.log(555555, allVacations)
+        res.status(200).send(allVacations)
+    },
+    getLists: async (req, res) => {
+        // const { id } = req.session.user
+        // console.log(id)
+        const { vacation_id } = req.params
+        // console.log(vacation_id)
+        const db = req.app.get("db")
+        const lists = await db
+            .get_lists([vacation_id])
+            .catch((err) => console.log(99999, err))
+        // console.log(555555, lists)
+        res.status(200).send(lists)
+    },
+
+    addListItem: async (req, res) => {
+        const { list_item_name } = req.body
+        const { id } = req.params
+        const db = req.app.get("db")
+        const newListItem = await db.create_list_item([id, list_item_name])
+        res.status(200).send(newListItem)
+    },
+    deleteListItem: async (req, res) => {
+        const { id } = req.params
+        const db = req.app.get("db")
+        await db.delete_list_item(id).catch(err => console.log(99999, err))
+        res.status(200).send('item deleted')
+    }
 }
