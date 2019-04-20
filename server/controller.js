@@ -80,7 +80,7 @@ module.exports = {
         // console.log(id)
         const allVacations = await db
             .get_vacation(id)
-            .catch((err) => console.log(99999, err))
+            .catch((err) => console.log(444444, err))
         // console.log(555555, allVacations)
         res.status(200).send(allVacations)
     },
@@ -92,7 +92,7 @@ module.exports = {
         const db = req.app.get("db")
         const lists = await db
             .get_lists([vacation_id])
-            .catch((err) => console.log(99999, err))
+            .catch((err) => console.log(665656, err))
         // console.log(555555, lists)
         res.status(200).send(lists)
     },
@@ -106,8 +106,17 @@ module.exports = {
     },
     deleteListItem: async (req, res) => {
         const { id } = req.params
+        // console.log(id)
         const db = req.app.get("db")
-        await db.delete_list_item(id).catch(err => console.log(99999, err))
+        await db.delete_list_item([id])
         res.status(200).send('item deleted')
+    },
+
+    editListItem: async (req, res) =>{
+        const { list_item_name } = req.body
+        const { id } = req.params
+        const db = req.app.get("db")
+        const editListItem = await db.edit_list_item([id, list_item_name])
+        res.status(200).send(editListItem)
     }
 }

@@ -7,6 +7,8 @@ import "./dash.css"
 import { getData, getLists } from "./../../ducks/userReducer"
 import { connect } from "react-redux"
 import axios from "axios"
+import Input from "./Input"
+import ListInput from "./ListInput"
 
 class Dashboard extends Component {
     constructor(props) {
@@ -25,6 +27,10 @@ class Dashboard extends Component {
     }
     componentDidMount = async () => {
         await this.props.getData()
+        this.update()
+        
+    }
+    update = async () => {
         const { vacation_id } = this.props.match.params
         await this.props.getLists(vacation_id)
         this.setState({
@@ -55,6 +61,10 @@ class Dashboard extends Component {
             list_name: listNameState,
         })
         this.setState({ listNameState: "" })
+        await this.props.getLists(vacation_id)
+        this.setState({
+            listName: this.props.lists,
+        })
     }
 
     newListItem = async (id) => {
@@ -63,37 +73,45 @@ class Dashboard extends Component {
             list_item_name: listItem,
         })
         this.setState({ listItem: "" })
+        const { vacation_id } = this.props.match.params
+        await this.props.getLists(vacation_id)
+        this.setState({
+            listName: this.props.lists,
+        })
     }
     deleteListItem = async (id) => {
-        await axios.delete(`/api/list-item/${id}`)
-        this.props.getLists()
+        await axios
+            .delete(`/api/list-item/${id}`)
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => console.log(99999999, err))
+        const { vacation_id } = this.props.match.params
+        await this.props.getLists(vacation_id)
+        this.setState({
+            listName: this.props.lists,
+        })
+    }
+    updateInput = (e) => {
+        this.setState({ listItem: e })
     }
     render() {
-        const { settingMenu, listName, addList, listItem } = this.state
+        const { settingMenu, listName } = this.state
         let mappedLists = listName.map((e) => (
             <div key={e.list_id} className="mapped-list">
-                <h3 className="list-title">{e.list_name}</h3>
+                <div className="list-title">{e.list_name}</div>
 
-                <div className="list---">
-                    {e.list_text.map((l) => (
-                        <div className="list-item">
-                            <button onClick={() => this.deleteListItem(l)} className="delete-list">X</button>
-                            {l}
-                        </div>
-                    ))}
-                </div>
+                <ListInput
+                    e={e}
+                    deleteListItem={this.deleteListItem}
+                    update={this.update}
+                />
                 <div className="lists-inputs">
-                    <input
-                        value={listItem}
-                        type="text"
-                        placeholder="Add new card"
-                        onChange={(e) =>
-                            this.setState({ listItem: e.target.value })
-                        }
+                    <Input
+                        updateInput={this.updateInput}
+                        e={e}
+                        newListItem={this.newListItem}
                     />
-                    <button onClick={() => this.newListItem(e.list_id)}>
-                        Add card
-                    </button>
                 </div>
             </div>
         ))
@@ -104,7 +122,7 @@ class Dashboard extends Component {
                     barsClick={this.barsClick}
                 />
                 {mappedLists}
-                <div className={addList ? "add-list" : "add-list input-show"}>
+                <div className="add-list">
                     <input
                         className=""
                         type="text"

@@ -8,7 +8,35 @@
     position: fixed;
     top: 0px;
     z-index: 10;
-    
+}
+.cant-think {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.drop-down {
+    background: #f5f6f7;
+    box-shadow: 0px 0px 10px 3px rgb(77, 77, 77);
+    color: #17394d;
+}
+.drop-down input {
+    border: none;
+    border-bottom: 1px solid black;
+    background: #f5f6f7;
+    outline: none;
+}
+.h2 {
+    margin: -1px;
+}
+
+.drop-down button {
+    border: none;
+    background: #e8e9eb;
+    padding: 7px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 3px rgb(129, 129, 141);
+    outline: none;
 }
 
 .icons {
@@ -23,7 +51,7 @@
     background: rgba(179, 176, 176, 0.637);
     padding: 10px;
     color: white;
-    border-radius: 10px;  
+    border-radius: 10px;
 }
 
 .fas:hover {
@@ -32,5 +60,77 @@
 .nope {
     background: none;
     margin-left: 10px;
+}
+
+.menu-down {
+    background: #f5f6f7;
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    top: 9vh;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 15px;
+    transition: 700ms;
+    box-shadow: 0px 0px 10px 3px rgb(77, 77, 77);
+}
+
+.vacation-hover:hover {
+    background: rgba(201, 200, 200, 0.637);
+
+    transform: scale(1.07);
+    padding: -1px;
+}
+.vacation-hover {
+    width: 90%;
+    padding: 3px;
+    border-radius: 15px;
+    transition: transform 100ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.up {
+    top: -50vh;
+}
+.search-icon {
+    position: absolute;
+    left: 80px;
+}
+.search-icon input {
+    height: 25px;
+    width: 200px;
+    background: rgba(179, 176, 176, 0.637);
+    outline: none;
+    border: none;
+    border-radius: 2px;
+
+}
+
+.search-icon input[type="text"] {
+    font-size: 1.2rem;
+}
+
+.search-icon input::placeholder {
+    color: rgb(27, 27, 27);
+}
+.search-icon input:focus {
+    background: #fff;
+    width: 230px;
+    color: #17394d;
     
+}
+.fa-search {
+    position: relative;
+    right: 35px;
+    background: none;
+    color: rgb(27, 27, 27);
+    
+}
+.fa-search:hover {
+    background: none;
 }

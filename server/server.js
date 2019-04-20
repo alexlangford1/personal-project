@@ -36,6 +36,8 @@ app.post("/api/list-item/:id", ctrl.addListItem)
 app.get('/api/list/:vacation_id', ctrl.getLists)
 app.get('/api/vacation', ctrl.getVacation)
 app.delete('/api/list-item/:id', ctrl.deleteListItem)
+app.put('/api/list-item/:id', ctrl.editListItem)
+
 app.get("/logout", (req, res) => {
     req.session.destroy()
     res.redirect("http://localhost:3000/#/")

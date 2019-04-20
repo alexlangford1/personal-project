@@ -1,3 +1,8 @@
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+
 .body {
     display: flex;
     flex-wrap: nowrap;
@@ -40,17 +45,17 @@
     position: absolute;
     right: 0px;
     top: 9vh;
-    width: 22vw;
+    width: 320px;
     height: 91vh;
     transition: 0.65s;
 }
 
 .gone {
-    top: -202vw;
+    top: -100vh;
     transition: 0.65s;
 }
 .drop-gone {
-    top: -30vh;
+    top: -200px;
     transition: 0.65s;
 }
 
@@ -58,7 +63,7 @@
     min-width: 290px;
     max-width: 290px;
     background: #dfe3e6;
-    margin: 12vh 14px 0px 14px;
+    margin: 11vh 0px 0px 14px;
     color: #17394d;
     display: flex;
     justify-content: flex-start;
@@ -67,23 +72,25 @@
     overflow: scroll;
     /* word-wrap: break-word; */
     height: min-content;
-    max-height: 85vh;
+    max-height: 86vh;
     border-radius: 15px;
 }
 .list-title {
     position: sticky;
     background: #dfe3e6;
     max-height: 40px;
-    top: -1px;
+    top: 0px;
     width: 290px;
     text-align: center;
     padding: 12px 0px;
     border-radius: 10px;
+    font-size: 1.3rem;
+
 }
 
 .add-list {
-    margin-top: 12vh;
-    height: 40px;
+    margin-top: 11vh;
+    height: 50px;
     background: #dfe3e6;
     border-radius: 10px;
     min-width: 290px;
@@ -91,6 +98,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-left: 14px;
 }
 
 .add-list input {
@@ -112,11 +120,12 @@
 .list-item {
     background: #f5f6f7;
     width: 85%;
-    padding: 8px;
+    padding: 5px;
     border-radius: 5px;
     margin-bottom: 9px;
     box-shadow: 0px 2px 3px rgb(129, 129, 141);
     word-wrap: break-word;
+
 }
 
 .list--- {
@@ -133,10 +142,18 @@
     background: #dfe3e6;
     width: 290px;
     text-align: center;
-    padding: 9px 0px;
+    padding: 4.5px 0px;
     border-radius: 15px;
     display: flex;
     justify-content: space-evenly;
+    padding-bottom: 7px;
+
+}
+.lists-input {
+    display: flex;
+    justify-content: space-evenly;
+    width: 290px;
+
 }
 
 .lists-inputs input {
@@ -164,4 +181,95 @@ button:hover {
     background: #f5f6f7;
     padding: 5px;
     border-radius: 5px;
+    outline: none;
+
+    
+}
+.list-item button{
+    background: none;
+
+}
+.list-bars {
+    float: right;
+    background: none;
+    color: #17394d;
+    height: 23px;
+    width: 23px;
+    padding: 0px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+.list-bars:hover {
+    background: rgb(210, 210, 211);
+
+}
+.edit-list {
+    position: relative;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+    background: rgb(8, 8, 8, .71);
+    z-index: 20;
+    border-radius: 15px;
+
+}
+
+.edit-list textarea {
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 220px;
+    min-height: 90px;
+    word-wrap: break-word;
+
+}
+.edit-gone {
+    display: none;
+}
+/* .all {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh; 
+    background: #3838389f;
+   z-index: 12;
+
+} */
+
+.outer-box {
+    position: absolute;
+    width: 450px;
+    top: calc(50vh - 150px);
+    left: calc(50vw - 225px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.buttons button {
+    margin: 5px 6px; 
+    outline: none;
+    border: none;
+    padding: 5px 9px;
+    background: rgb(8, 8, 8, .71);
+    border-radius: 5px;
+    color: white;
+}
+
+.buttons button:hover{
+    background: rgb(8, 8, 8, .91);
+    transform: translateX(8px);
+    transition:  ease-out .15s;
 }

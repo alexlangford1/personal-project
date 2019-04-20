@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./header.css"
 import { connect } from "react-redux"
-import { getData } from "./../../ducks/userReducer"
+import { getData, getVacay } from "./../../ducks/userReducer"
 import { Link } from "react-router-dom"
 import axios from "axios"
 
@@ -12,11 +12,12 @@ class Header extends Component {
         this.state = {
             newVaca: false,
             vacationName: "",
+            vacayMenu: false,
         }
     }
 
-    componentDidMount() {
-        this.props.getData()
+    async componentDidMount() {
+        await this.props.getData()
     }
     addVacation = async () => {
         const { vacationName } = this.state
@@ -32,12 +33,49 @@ class Header extends Component {
     }
 
     render() {
-        const { newVaca } = this.state
+        const { newVaca, vacayMenu } = this.state
         return (
             <div className="app">
-                <Link to="/vacations">
-                    <i className="fas fa-bars fa-2x nope" />
-                </Link>
+                <div className='search'>
+                    <i
+                        className="fas fa-bars fa-2x nope"
+                        onClick={() =>
+                            this.setState({ vacayMenu: !this.state.vacayMenu })
+                        }
+                    />
+                    <div className={vacayMenu ? "menu-down" : "menu-down up"}>
+                        <div className="vacation-hover">
+                            <Link
+                                style={{
+                                    fontSize: "1.7rem",
+                                    borderBottom: "none",
+                                    textDecoration: "none",
+                                    color: "#17394d",
+                                }}
+                                to="/vacations"
+                            >
+                                VACATIONS
+                            </Link>
+                        </div>
+                        <div className="vacation-hover">
+                            <Link
+                                style={{
+                                    fontSize: "1.7rem",
+                                    borderBottom: "none",
+                                    textDecoration: "none",
+                                    color: "#17394d",
+                                }}
+                                to="/planner"
+                            >
+                                PLANNER
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                    <div className='search-icon'>
+                        <input placeholder="search" type="text" />
+                        <span className="fas fa-search"></span>
+                    </div>
                 <h1>Cool App</h1>
                 <div className="icons">
                     <i className="fas fa-plus " onClick={this.newClick} />
@@ -48,7 +86,8 @@ class Header extends Component {
                     />
                 </div>
                 <div className={newVaca ? "drop-down" : "drop-down drop-gone"}>
-                    <form>
+                    <h2 className="h2">Add New Vacation</h2>
+                    <form className="cant-think">
                         <input
                             type="text"
                             placeholder="New Vacation"
@@ -74,5 +113,5 @@ const mapState = (state) => state
 
 export default connect(
     mapState,
-    { getData },
+    { getData, getVacay },
 )(Header)

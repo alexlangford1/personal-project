@@ -1,7 +1,3 @@
--- select list_name, list_id from list
--- join vacation v on list.vacation_id = v.vacation_id 
--- join users u on v.users_id = u.id
--- where u.id = ($1) and list.vacation_id = ($2);
 
 select 
 l.list_id,

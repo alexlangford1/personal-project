@@ -44,6 +44,7 @@ CREATE TABLE "vacation"
     "vacation_id" serial NOT NULL,
     "users_id" int NOT NULL,
     "vacation_name" varchar(100) NOT NULL,
+    "days" int,
     CONSTRAINT vacation_pk PRIMARY KEY ("vacation_id")
 );
 
