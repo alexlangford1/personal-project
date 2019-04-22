@@ -2,13 +2,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(8, 8, 8, 0.61);
+    background: #161616;
     width: 100vw;
     height: 9vh;
     position: fixed;
     top: 0px;
     z-index: 10;
 }
+
+.logob {
+    background-image: url('../../img/logob.png');
+    background-repeat: no-repeat;
+    background-position: 50% 55%;
+    width: 900px;
+    height: 22vh;
+    
+    transform: scale(.4)
+}
+
 .cant-think {
     width: 70%;
     display: flex;
@@ -55,7 +66,7 @@
 }
 
 .fas:hover {
-    background: rgba(51, 50, 50, 0.637);
+    background: rgba(117, 116, 116, 0.637);
 }
 .nope {
     background: none;
@@ -102,9 +113,9 @@
     left: 80px;
 }
 .search-icon input {
-    height: 25px;
+    height: 30px;
     width: 200px;
-    background: rgba(179, 176, 176, 0.637);
+    background: #DFE3E6;
     outline: none;
     border: none;
     border-radius: 2px;
@@ -119,7 +130,7 @@
     color: rgb(27, 27, 27);
 }
 .search-icon input:focus {
-    background: #fff;
+    background: #ffffff;
     width: 230px;
     color: #17394d;
     

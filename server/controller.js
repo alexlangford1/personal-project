@@ -106,17 +106,31 @@ module.exports = {
     },
     deleteListItem: async (req, res) => {
         const { id } = req.params
-        // console.log(id)
         const db = req.app.get("db")
         await db.delete_list_item([id])
         res.status(200).send('item deleted')
     },
 
-    editListItem: async (req, res) =>{
+    deleteVacation: async (req, res) => {
+        const { id } = req.params
+        const db = req.app.get("db")
+        await db.delete_vacation([id]).catch(err => console.log(777, err))
+        res.status(200).send('vacation deleted')
+    },
+
+    editListItem: async (req, res) => {
         const { list_item_name } = req.body
         const { id } = req.params
         const db = req.app.get("db")
         const editListItem = await db.edit_list_item([id, list_item_name])
         res.status(200).send(editListItem)
+    },
+
+    editVacation: async (req, res ) => {
+        const { vacation_name } = req.body
+        const { id } = req.params
+        const db = req.app.get("db")
+        const editVacation = await db.edit_vacation([id, vacation_name])
+        res.status(200).send(editVacation)
     }
 }

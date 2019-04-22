@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import "./vacation.css"
-// import axios from "axios"
 import { getVacay, getData } from "./../../ducks/userReducer"
 import Header from "../header/Header"
 import { Link } from "react-router-dom"
+import EditList from "./EditList"
+import axios from "axios"
 
 class Vacation extends Component {
     constructor(props) {
@@ -14,14 +15,33 @@ class Vacation extends Component {
             vacations: [],
             newVaca: false,
             vacayCheck: false,
+            toggle: false,
+            vacation_name: "",
         }
+    }
+
+    getVacations = async () => {
+        await this.props.getVacay()
+        this.setState({ vacations: this.props.vacation })
+    }
+
+    deleteVacation = async (id) => {
+        await axios
+            .delete(`/api/vacation/${id}`)
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => console.log(5656569, err))
+        await this.props.getVacay()
+        this.setState({
+            vacations: this.props.vacation,
+        })
     }
 
     componentDidMount = async () => {
         await this.props.getData()
         await this.props.getVacay()
         this.setState({ vacations: this.props.vacation })
-        console.log(this.props.vacation)
         if (!this.props.vacation[0]) {
             this.setState({ vacayCheck: false })
         } else {
@@ -32,37 +52,60 @@ class Vacation extends Component {
     handleClick = () => {
         this.setState({ vacations: !this.state.vacations })
     }
+    handleToggle = () => {
+        this.setState({ toggle: !this.state.toggle })
+    }
 
     render() {
-        const { vacations, vacayCheck } = this.state
+        const { vacations, vacayCheck, toggle } = this.state
         let vacay = vacations.map((e) => (
-            <h2 key={e.vacation_id} className="vacay-map">
-                <i className="fas fa-pencil-alt fa-xs edit" />
-                <Link
-                    to={{
-                        pathname: `/dashboard/${e.vacation_id}`
-                    }}
-                >
-                    <div className="wordz">
-                        {e.vacation_name}
-                    </div>
-                </Link>
-            </h2>
+            <div
+                key={e.vacation_id}
+                style={{
+                    backgroundImage: `url(
+                        ${localStorage.getItem(`imageUrl${e.vacation_id}`) ||
+                            "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjYyNzQ3fQ"})`,
+                }}
+                className="vacay-map"
+            >
+                <div className="link">
+                    <Link
+                        to={{
+                            pathname: `/dashboard/${e.vacation_id}`,
+                        }}
+                        style={{
+                            border: "none",
+                            textDecoration: "none",
+                        }}
+                    >
+                        <div className="wordz">{e.vacation_name}</div>
+                    </Link>
+                </div>
+
+                <EditList
+                    getVacations={this.getVacations}
+                    editVacation={this.editVacation}
+                    toggle={toggle}
+                    e={e}
+                    deleteVacation={this.deleteVacation}
+                    update={this.update}
+                />
+            </div>
         ))
 
         return (
             <div className="vacation">
                 <Header />
-                <h1 className="qwe">Vacations</h1>
                 {vacayCheck ? (
                     <div className="vacay-boxes">{vacay}</div>
                 ) : (
-                    <h3>You have no vacations</h3>
+                    <h3 className="no-vacations">You have no vacations</h3>
                 )}
             </div>
         )
     }
 }
+
 const mapState = (state) => state
 
 export default connect(

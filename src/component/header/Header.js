@@ -36,7 +36,7 @@ class Header extends Component {
         const { newVaca, vacayMenu } = this.state
         return (
             <div className="app">
-                <div className='search'>
+                <div className="search">
                     <i
                         className="fas fa-bars fa-2x nope"
                         onClick={() =>
@@ -72,11 +72,13 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
-                    <div className='search-icon'>
-                        <input placeholder="search" type="text" />
-                        <span className="fas fa-search"></span>
-                    </div>
-                <h1>Cool App</h1>
+                <div className="search-icon">
+                    <input placeholder=" search" type="text" />
+                    <span className="fas fa-search" />
+                </div>
+
+                <div className="logob" />
+
                 <div className="icons">
                     <i className="fas fa-plus " onClick={this.newClick} />
                     <i className="fas fa-bell " />

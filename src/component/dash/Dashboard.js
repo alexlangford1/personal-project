@@ -1,8 +1,6 @@
 import React, { Component } from "react"
-// import List from "../lists/Lists"
 import Header from "../header/Header"
 import Settings from "../settings/SettingsMenu"
-// import PopList from "../popuplist/PopUpList"
 import "./dash.css"
 import { getData, getLists } from "./../../ducks/userReducer"
 import { connect } from "react-redux"
@@ -26,9 +24,15 @@ class Dashboard extends Component {
         }
     }
     componentDidMount = async () => {
+        this.background()
         await this.props.getData()
         this.update()
-        
+    }
+    background = () => {
+        const { vacation_id } = this.props.match.params
+        this.setState({
+            backImage: localStorage.getItem(`imageUrl${vacation_id}`),
+        })
     }
     update = async () => {
         const { vacation_id } = this.props.match.params
@@ -96,6 +100,7 @@ class Dashboard extends Component {
         this.setState({ listItem: e })
     }
     render() {
+        const { vacation_id } = this.props.match.params
         const { settingMenu, listName } = this.state
         let mappedLists = listName.map((e) => (
             <div key={e.list_id} className="mapped-list">
@@ -115,8 +120,19 @@ class Dashboard extends Component {
                 </div>
             </div>
         ))
+        let { backImage } = this.state
         return (
-            <div className="body">
+            <div
+                className="body"
+                style={{
+                    backgroundImage: `url(
+                        ${
+                            backImage
+                                ? backImage
+                                : "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjYyNzQ3fQ"
+                        })`,
+                }}
+            >
                 <Header
                     settingClick={this.settingClick}
                     barsClick={this.barsClick}
@@ -133,12 +149,12 @@ class Dashboard extends Component {
                     />
                     <button onClick={() => this.newList()}>Add new list</button>
                 </div>
-
-                {/* <div className={popUpList ? "popUp" : "popdown"}>
-                    <PopList click={this.handleClick} />
-                </div> */}
                 <div className={settingMenu ? "menu" : "menu gone"}>
-                    <Settings />
+                    <Settings
+                        vacation_id={vacation_id}
+                        background={this.background}
+                        settingClick={this.settingClick}
+                    />
                 </div>
             </div>
         )
