@@ -10,19 +10,29 @@
     box-sizing: border-box;
 }
 
-body {
+.size1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
+    width: 100vw;
 }
+
+.logo7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
 .logow {
-    background-image: url('../../img/logow.png');
+    background-image: url("../../img/logow.png");
     background-repeat: no-repeat;
-    width: calc(434px + 434px);
+    min-width: 1000px;
     height: 20vh;
     background-position: center;
-    transform: scale(.7);
+    transform: scale(0.7);
 }
 
 .container h1 {
@@ -54,9 +64,9 @@ body {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
     overflow: hidden;
-    width: 868px;
+    width: 900px;
     max-width: 100%;
-    min-height: 500px;
+    height: 600px;
 }
 
 .container button {
@@ -82,7 +92,6 @@ body {
 
 .container button:hover {
     background-color: #ab241ae3;
-
 }
 .container button.ghost {
     border: 1px solid #31313152;
@@ -104,11 +113,13 @@ body {
 }
 
 .container input {
-    background-color: #eee;
+    background-color: rgb(230, 225, 225);
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
     width: 100%;
+    outline: none;
+    border-radius: 5px;
 }
 
 .social-container {
@@ -189,7 +200,7 @@ body {
 .overlay {
     background: #ff416c;
     background: linear-gradient(to right, #ff416c, #ca3305);
-    background-image: url('../../img/rock.jpg');
+    background-image: url("../../img/rock.jpg");
     background-position: center;
     background-position: 50% 92%;
     background-repeat: no-repeat;
@@ -240,4 +251,46 @@ body {
 }
 .container {
     color: black;
+}
+@media (max-width: 500px) {
+    .container {
+        width: 95vw;
+    }
+    .social-container {
+        display: none;
+    }
+    .logow {
+        min-width: 150%;
+        transform: scale(.5);
+        margin-right: 12px;
+    }
+    .none {
+        display: none;
+
+    }
+    .container h1 {
+        font-size: 1.7rem
+    }
+    .container input {
+        width: 90%;
+    }
+    .container form {
+        padding: 8px;
+    }
+    .overlay-panel {
+        padding: 0px 8px;
+        height: 50%;
+        margin-top: 30%;
+        background: #4e4c4c7e;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        min-width: 95vw;
+        max-height: 500px;
+    }
+    .logow {
+        width: 95vw;
+    }
 }

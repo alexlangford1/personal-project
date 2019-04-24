@@ -11,11 +11,11 @@ class ActualEditInput extends Component {
         this.state = {
             popupVisible: false,
             editText: "",
+            budget: "",
         }
     }
     handleClick = () => {
         if (!this.state.popupVisible) {
-            // attach/remove event handler
             document.addEventListener("click", this.handleOutsideClick, false)
         } else {
             document.removeEventListener(
@@ -31,7 +31,6 @@ class ActualEditInput extends Component {
     }
 
     handleOutsideClick = (e) => {
-        // ignore clicks on the component itself
         if (this.node.contains(e.target)) {
             return
         }
@@ -39,26 +38,34 @@ class ActualEditInput extends Component {
         this.handleClick()
     }
 
-    handleEdit = (id) => {
+    handleEdit = async (id) => {
         let { editText } = this.state
         console.log(id)
-        axios
+        await axios
             .put(`/api/list-item/${id}`, { list_item_name: editText })
             .catch((err) => console.log("edit error", err))
         this.handleClick()
         this.props.update()
     }
 
+    editBudget = async (id) => {
+        let { budget } = this.state
+        await axios
+            .put(`/api/budget/${id}`, { budget: budget })
+            .catch((err) => console.log("budget error", err))
+        this.handleClick()
+        this.props.update()
+    }
+
     keyPress = (event) => {
         if (event.key === 13) {
-            this.handleEdit(
-                this.props.e.list_item_id[this.props.i],
-            )
+            this.handleEdit(this.props.e.list_item_id[this.props.i])
         }
-      }
+    }
 
     render() {
         let { popupVisible } = this.state
+        let { e, i } = this.props
         return (
             <div
                 className="popover-container"
@@ -81,10 +88,18 @@ class ActualEditInput extends Component {
                             <textarea
                                 onKeyPress={this.keyPress}
                                 autoFocus="autofocus"
-                                placeholder="Edit Card"
+                                placeholder="Edit Card Name"
                                 type="textarea"
                                 onChange={(e) =>
                                     this.setState({ editText: e.target.value })
+                                }
+                            />
+                            <input
+                                placeholder="Edit Item Cost"
+                                className="input-edit"
+                                type="number"
+                                onChange={(e) =>
+                                    this.setState({ budget: e.target.value })
                                 }
                             />
                         </div>
@@ -96,7 +111,7 @@ class ActualEditInput extends Component {
                             <button
                                 onClick={() => {
                                     this.props.deleteListItem(
-                                        this.props.e.list_item_id[this.props.i],
+                                        e.list_item_id[i],
                                     )
                                     this.handleClick()
                                 }}
@@ -107,12 +122,22 @@ class ActualEditInput extends Component {
                             <button
                                 onClick={() =>
                                     this.handleEdit(
-                                        this.props.e.list_item_id[this.props.i],
+                                        e.list_item_id[i],
                                     )
                                 }
                             >
                                 <i className="far fa-edit" />
-                                {` Edit`}
+                                {` Edit Name`}
+                            </button>
+                            <button
+                            onClick={() =>
+                                    this.editBudget(
+                                        e.list_item_id[i],
+                                    )
+                                }
+                            >
+                                <i className="fas fa-dollar-sign" />
+                                {`  Edit Cost`}
                             </button>
                         </div>
                     </div>

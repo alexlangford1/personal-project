@@ -2,13 +2,20 @@
     font-family: 'Raleway', sans-serif;
 }
 
+.joke {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: blue;
+    height: 100vh;
+    color: white;
+    font-size: 5rem;
+}
 
 .body {
     display: flex;
     flex-wrap: nowrap;
-    /* justify-content: center; 
-    align-items: center;    */
-    /* background-image: url("../../img/sunset3.jpg"); */
     height: 100vh;
     width: 100vw;
     color: white;
@@ -26,6 +33,7 @@
     align-items: center;
 }
 
+
 .drop-down {
     width: 300px;
     height: 100px;
@@ -40,6 +48,7 @@
     right: 10vw;
     top: 9vh;
     transition: 0.65s;
+    z-index: 100;
 }
 
 .menu {
@@ -73,7 +82,7 @@
     align-items: center;
     flex-direction: column;
     overflow: scroll;
-    /* word-wrap: break-word; */
+    word-wrap: break-word;
     height: min-content;
     max-height: 86vh;
     border-radius: 15px;
@@ -88,6 +97,7 @@
     padding: 12px 0px;
     border-radius: 10px;
     font-size: 1.3rem;
+    margin-bottom: 10px;
 
 }
 
@@ -133,13 +143,27 @@
 
 .list--- {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    overflow: scroll;
     width: 100%;
 }
+.delete-l:hover {
+    background: #6d6e6e52;
+    color: #ffffff;
 
-.lists-inputs {
+}
+.delete-l {
+    position: relative;
+    left: -9px;
+    padding: 3px 6px;
+    color: #6d6e6e7a;
+}
+
+.lists-111 {
+    
+    position: -webkit-sticky;
     position: sticky;
     bottom: 0px;
     background: #dfe3e6;
@@ -150,23 +174,30 @@
     display: flex;
     justify-content: space-evenly;
     padding-bottom: 7px;
+    flex-direction: column;
 
 }
+
 .lists-input {
     display: flex;
     justify-content: space-evenly;
     width: 290px;
 
 }
+.total {
+    margin-bottom: 5px;
+    
+}
 
-.lists-inputs input {
+
+.lists-111 input {
     border: none;
     border-bottom: 1px solid black;
     background: #dfe3e6;
     outline: none;
 }
 
-.lists-inputs button {
+.lists-111 button {
     border: none;
     background: #f5f6f7;
     padding: 7px;
@@ -211,24 +242,33 @@ button:hover {
 }
 .edit-list {
     position: relative;
-    width: 300px;
+    width: 400px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 180px;
+    min-height: 280px;
     background: rgb(8, 8, 8, .71);
     z-index: 20;
     border-radius: 15px;
 
+}
+.input-edit {
+    width: 240px;
+    height: 50px;
+    font-size: 1rem;
 }
 
 .edit-list textarea {
     border: none;
     border-bottom: 1px solid black;
     outline: none;
-    width: 220px;
+    width: 240px;
     min-height: 90px;
     word-wrap: break-word;
+    margin-bottom: 15px;
+    font-size: 1rem;
+
 
 }
 .edit-gone {
@@ -247,9 +287,9 @@ button:hover {
 
 .outer-box {
     position: absolute;
-    width: 450px;
+    width: 600px;
     top: calc(50vh - 150px);
-    left: calc(50vw - 225px);
+    left: calc(50vw - 300px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,17 +302,33 @@ button:hover {
     flex-direction: column;
 }
 .buttons button {
-    margin: 5px 6px; 
+    margin: 5px 19px; 
     outline: none;
     border: none;
     padding: 5px 9px;
     background: rgb(8, 8, 8, .71);
     border-radius: 5px;
     color: white;
+    font-size: 1.05rem;
 }
 
 .buttons button:hover{
     background: rgb(8, 8, 8, .91);
-    transform: translateX(8px);
+    transform: translateX(6px);
     transition:  ease-out .15s;
 } 
+.fa-dollar-sign {
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+.budget {
+    position: relative;
+    float: right;
+    top: 5px;
+    padding: 0px 0px 10px 10px;
+    font-weight: 500;
+    z-index: 1;
+
+}

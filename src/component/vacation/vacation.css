@@ -13,36 +13,19 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
     overflow-y: scroll;
-    scroll-behavior: smooth;    
+    scroll-behavior: smooth;
 }
 ::-webkit-scrollbar {
     display: none;
 }
 
 .vacay-boxes {
-    margin-top: 90vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
-}
-
-.vacay-map {
-    width: 300px;
-    height: 200px;
-    background: rgba(179, 176, 176, 0.637);
-    margin: 0px 25px 50px 25px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 20px;
-    color: white;
-    overflow: hidden;
 }
 .vacay-map:hover i {
     opacity: 0.9;
@@ -77,16 +60,21 @@
     padding: 10px;
     border-radius: 20px;
 }
-.no-vacations {
+
+.blur {
     position: relative;
-    top: -200px;
+    top: -60vh;
+
+    background: #5a585844;
+    padding: 15px;
+    border-radius: 20px;
+
 }
 .edit-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 .text-area textarea {
     min-height: 70px;
@@ -99,17 +87,18 @@
 }
 
 .edit-modal {
-    margin-top: 60px;
+    /* margin-top: 60px; */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: -104px;
+    top: -73px;
     right: 13px;
     width: 335px;
-    min-height: 201px;
-    z-index: 20;
+    min-height: 203px;
+    z-index: 200;
     background: rgba(128, 128, 128, 0.685);
+    border-radius: 20px;
 }
 .move-x {
     position: relative;
@@ -120,14 +109,10 @@
 .move-x:hover {
     background: grey;
     color: #ffffff;
-
-
 }
 .dropped {
     display: none;
 }
-
-
 
 .edit-buttons button {
     width: 80px;
@@ -137,5 +122,36 @@
     border-radius: 8px;
     border: none;
     padding: 3px;
+}
+.empty {
+    margin-bottom: 70vh;
+}
 
+.vacay-map {
+    width: 300px;
+    height: 200px;
+    background: rgba(179, 176, 176, 0.637);
+    margin: 0px 25px 50px 25px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    color: white;
+    overflow: hidden;
+}
+
+@media (max-width: 1100px) {
+    .vacation {
+        background-image: url("../../img/mountian.jpg");
+    }
+}
+@media (max-width: 420px) {
+    .blur {
+        top: -400px;
+        color: white;
+
+    }
 }

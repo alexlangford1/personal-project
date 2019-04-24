@@ -96,30 +96,58 @@ class Dashboard extends Component {
             listName: this.props.lists,
         })
     }
+
+    deleteList = async (id) => {
+        await axios
+            .delete(`/api/list/${id}`)
+            .then((res) => {
+                console.log(res.data)
+            })
+            .catch((err) => console.log("list delete error", err))
+        const { vacation_id } = this.props.match.params
+        await this.props.getLists(vacation_id)
+        this.setState({
+            listName: this.props.lists,
+        })
+    }
+
     updateInput = (e) => {
         this.setState({ listItem: e })
     }
+    
     render() {
         const { vacation_id } = this.props.match.params
         const { settingMenu, listName } = this.state
-        let mappedLists = listName.map((e) => (
-            <div key={e.list_id} className="mapped-list">
-                <div className="list-title">{e.list_name}</div>
+        let mappedLists = listName.map((e) => {
+            let total = e.budget.reduce((acc, curr) => {
+                return acc + curr
+            }, 0)
+            return (
+                <div key={e.list_id} className="mapped-list">
+                    <div className="list-title">
+                        {e.list_name}
+                        <i
+                            className="fas fa-times delete-l"
+                            onClick={() => this.deleteList(e.list_id)}
+                        />
+                    </div>
 
-                <ListInput
-                    e={e}
-                    deleteListItem={this.deleteListItem}
-                    update={this.update}
-                />
-                <div className="lists-inputs">
-                    <Input
-                        updateInput={this.updateInput}
+                    <ListInput
                         e={e}
-                        newListItem={this.newListItem}
+                        deleteListItem={this.deleteListItem}
+                        update={this.update}
                     />
+                    <div className="lists-111">
+                        <div className="total">Total: ${total}</div>
+                        <Input
+                            updateInput={this.updateInput}
+                            e={e}
+                            newListItem={this.newListItem}
+                        />
+                    </div>
                 </div>
-            </div>
-        ))
+            )
+        })
         let { backImage } = this.state
         return (
             <div

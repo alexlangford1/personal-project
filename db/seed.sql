@@ -24,6 +24,7 @@ CREATE TABLE "list_item"
     "list_id" int NOT NULL,
     "list_item_name" text NOT NULL,
     "description" varchar(180),
+    "budget" int,
     CONSTRAINT list_item_pk PRIMARY KEY ("list_item_id")
 );
 
@@ -61,7 +62,7 @@ CREATE TABLE "comment"
 
 
 
-ALTER TABLE "list_item" ADD CONSTRAINT "list_item_fk0" FOREIGN KEY ("list_id") REFERENCES "list"("list_id");
+ALTER TABLE "list_item" ADD CONSTRAINT "list_item_fk0" FOREIGN KEY ("list_id") REFERENCES "list"("list_id") on;
 
 ALTER TABLE "list" ADD CONSTRAINT "list_fk0" FOREIGN KEY ("vacation_id") REFERENCES "vacation"("vacation_id");
 

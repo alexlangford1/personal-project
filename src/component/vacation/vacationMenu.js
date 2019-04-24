@@ -64,7 +64,7 @@ class Vacation extends Component {
                 style={{
                     backgroundImage: `url(
                         ${localStorage.getItem(`imageUrl${e.vacation_id}`) ||
-                            "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjYyNzQ3fQ"})`,
+                            "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjYyNzQ3fQ"})`
                 }}
                 className="vacay-map"
             >
@@ -96,10 +96,14 @@ class Vacation extends Component {
         return (
             <div className="vacation">
                 <Header />
+                <div className="empty" />
                 {vacayCheck ? (
                     <div className="vacay-boxes">{vacay}</div>
                 ) : (
-                    <h3 className="no-vacations">You have no vacations</h3>
+                    <div className="blur">
+                        <h1>Looking for your vacations,</h1>
+                        <h1>Please add one to start.</h1>
+                    </div>
                 )}
             </div>
         )

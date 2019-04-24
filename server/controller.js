@@ -2,7 +2,8 @@ const bcrypt = require("bcryptjs")
 
 module.exports = {
     register: async (req, res) => {
-        const { email, first_name, last_name, password } = req.body
+        const { email2, first_name, last_name, password } = req.body
+        let email = email2
         const db = req.app.get("db")
         const account = await db.get_acc_by_email([email])
         if (account[0]) {
@@ -118,6 +119,13 @@ module.exports = {
         res.status(200).send('vacation deleted')
     },
 
+    deleteList: async (req, res) => {
+        const { id } = req.params
+        const db = req.app.get("db")
+        await db.delete_list([id]).catch(err => console.log('delete list', err))
+        res.status(200).send('list deleted')
+    },
+
     editListItem: async (req, res) => {
         const { list_item_name } = req.body
         const { id } = req.params
@@ -132,5 +140,15 @@ module.exports = {
         const db = req.app.get("db")
         const editVacation = await db.edit_vacation([id, vacation_name])
         res.status(200).send(editVacation)
+    },
+
+    budget: async (req, res) => {
+        const { id } = req.params
+        const { budget } = req.body
+        const db = req.app.get("db")
+        const newBudget = await db.edit_budget([id, budget])
+        res.status(200).send(newBudget)
+
     }
+
 }

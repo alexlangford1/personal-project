@@ -1,16 +1,32 @@
 import React, { Component } from "react"
 import "./welcome.css"
-// import { Link } from "react-router-dom"
 import axios from "axios"
+import { Link } from 'react-router-dom'
 
 export default class SingIn extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            email2: "",
+            first_name: "",
+            last_name: "",
+            password: "",
             email: "",
             pass: "",
             toggle: true,
         }
+    }
+    register = async () => {
+        const { email2, first_name, last_name, password } = this.state
+        console.log(email2, first_name, last_name, password)
+        const res = await axios.post("/auth/register", {
+            email2,
+            first_name,
+            last_name,
+            password,
+        })
+        if (res.data.loggedIn) this.props.history.push("/vacations")
+        else alert("Registration failed")
     }
 
     login = async () => {
@@ -20,11 +36,17 @@ export default class SingIn extends Component {
         else alert("Login failed")
     }
 
+    handleChange = (name, value) => {
+        this.setState({ [name]: value })
+    }
+
     render() {
         let { toggle } = this.state
         return (
-            <div>
-                <div className="logow" />
+            <div className="size1">
+                <div className='logo7'>
+                    <div className="logow" />
+                </div>
 
                 <div
                     className={
@@ -32,10 +54,9 @@ export default class SingIn extends Component {
                     }
                 >
                     <div className="form-container sign-up-container">
-                        <form action="localhost:3000/#/">
+                        <form action="localhost:3000/#/" autoComplete="off">
                             <h1>Create Account</h1>
                             <div className="social-container">
-                                
                                 <a href="localhost:3000/#/" className="social">
                                     <i className="fab fa-facebook-f" />
                                 </a>
@@ -46,15 +67,60 @@ export default class SingIn extends Component {
                                     <i className="fab fa-linkedin-in" />
                                 </a>
                             </div>
-                            <span>or use your email for registration</span>
-                            <input type="text" placeholder="Name" />
-                            <input type="email" placeholder="Email" />
-                            <input type="password" placeholder="Password" />
-                            <button>Sign Up</button>
+                            <span className='none'>or use your email for registration</span>
+                            <input type="hidden" value="something" />
+                            <input
+                                autoComplete="off"
+                                onChange={(e) =>
+                                    this.handleChange(
+                                        "first_name",
+                                        e.target.value,
+                                    )
+                                }
+                                name="first_name"
+                                type=""
+                                placeholder="First Name"
+                            />
+                            <input
+                                autoComplete="off"
+                                onChange={(e) =>
+                                    this.handleChange(
+                                        "last_name",
+                                        e.target.value,
+                                    )
+                                }
+                                name="last_name"
+                                type="text"
+                                placeholder="Last Name"
+                            />
+                            <input
+                                autoComplete="off"
+                                onChange={(e) =>
+                                    this.handleChange("email2", e.target.value)
+                                }
+                                name="email2"
+                                type="text"
+                                placeholder="Email"
+                            />
+                            <input
+                                autoComplete="off"
+                                onChange={(e) =>
+                                    this.handleChange(
+                                        "password",
+                                        e.target.value,
+                                    )
+                                }
+                                name="password"
+                                type="new-password"
+                                placeholder="Password"
+                            />
+                            <button onClick={() => this.register()}>
+                                Sign Up
+                            </button>
                         </form>
                     </div>
                     <div className="form-container sign-in-container">
-                        <form action="localhost:3000/#/">
+                        <form action="localhost:3000/#/" autoComplete="off">
                             <h1>Sign in</h1>
                             <div className="social-container">
                                 <a href="localhost:3000/#/" className="social">
@@ -67,8 +133,9 @@ export default class SingIn extends Component {
                                     <i className="fab fa-linkedin-in" />
                                 </a>
                             </div>
-                            <span>or use your account</span>
+                            <span className='none'>or use your account</span>
                             <input
+                                autoComplete="false"
                                 type="text"
                                 placeholder="Email"
                                 onChange={(e) =>
@@ -77,6 +144,7 @@ export default class SingIn extends Component {
                                 value={this.state.email}
                             />
                             <input
+                                autoComplete="false"
                                 type="password"
                                 placeholder="Password"
                                 onChange={(e) =>
@@ -84,8 +152,12 @@ export default class SingIn extends Component {
                                 }
                                 value={this.state.pass}
                             />
-                            <a href="localhost:3000/#/">Forgot your password?</a>
-                            <button onClick={() => this.login()}>Sign In</button>
+                            <Link to='/hahalol'>
+                                Forgot your password?
+                            </Link>
+                            <button onClick={() => this.login()}>
+                                Sign In
+                            </button>
                         </form>
                     </div>
                     <div className="overlay-container">

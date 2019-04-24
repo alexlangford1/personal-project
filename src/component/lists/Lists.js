@@ -1,24 +1,13 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React from "react"
 
-export default class List extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       
-    }
-  }
-  
-    componentDidMount(){
-      axios.get()
-    }
 
-    render() {
-      return (
-        <div className='lists'>
-          <h1>List</h1>
+const Joke = () => (
+    <div className='joke'>
+        <div className="logo7">
+            <div className="logow" />
         </div>
-      )
-    }
-}
+        <h1>Sucks to suck</h1>
+    </div>
+)
+
+export default Joke

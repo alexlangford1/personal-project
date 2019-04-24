@@ -33,51 +33,19 @@ class Header extends Component {
     }
 
     render() {
-        const { newVaca, vacayMenu } = this.state
+        const { newVaca } = this.state
         return (
             <div className="app">
-                <div className="search">
-                    <i
-                        className="fas fa-bars fa-2x nope"
-                        onClick={() =>
-                            this.setState({ vacayMenu: !this.state.vacayMenu })
-                        }
-                    />
-                    <div className={vacayMenu ? "menu-down" : "menu-down up"}>
-                        <div className="vacation-hover">
-                            <Link
-                                style={{
-                                    fontSize: "1.7rem",
-                                    borderBottom: "none",
-                                    textDecoration: "none",
-                                    color: "#17394d",
-                                }}
-                                to="/vacations"
-                            >
-                                VACATIONS
-                            </Link>
-                        </div>
-                        <div className="vacation-hover">
-                            <Link
-                                style={{
-                                    fontSize: "1.7rem",
-                                    borderBottom: "none",
-                                    textDecoration: "none",
-                                    color: "#17394d",
-                                }}
-                                to="/planner"
-                            >
-                                PLANNER
-                            </Link>
-                        </div>
+                <Link className="house" to="/vacations">
+                    <i className="fas fa-home fa-2x nope" />
+                </Link>
+                <div className="logo1">
+                    <div className="logob">
+                        <Link to="/vacations" >
+                        <div className='wander'></div>
+                        </Link>
                     </div>
                 </div>
-                <div className="search-icon">
-                    <input placeholder=" search" type="text" />
-                    <span className="fas fa-search" />
-                </div>
-
-                <div className="logob" />
 
                 <div className="icons">
                     <i className="fas fa-plus " onClick={this.newClick} />

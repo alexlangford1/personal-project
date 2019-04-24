@@ -14,7 +14,7 @@ export default class Unsplash extends Component {
     performSearch = (query = "wallpaper") => {
         axios
             .get(
-                `https://api.unsplash.com/search/photos/?page=1&per_page=26&query=${query}&client_id=${
+                `https://api.unsplash.com/search/photos/?page=1&per_page=30&query=${query}&client_id=${
                     process.env.REACT_APP_ACCESS_KEY
                 }`,
             )
