@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import "./dash.css"
 import ActualEditInput from "./actualEditInput"
 
+
 export default class ListInput extends Component {
     constructor(props) {
         super(props)

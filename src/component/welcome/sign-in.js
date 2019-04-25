@@ -3,6 +3,7 @@ import "./welcome.css"
 import axios from "axios"
 import { Link } from 'react-router-dom'
 
+
 export default class SingIn extends Component {
     constructor(props) {
         super(props)
@@ -19,20 +20,20 @@ export default class SingIn extends Component {
     register = async () => {
         const { email2, first_name, last_name, password } = this.state
         console.log(email2, first_name, last_name, password)
-        const res = await axios.post("/auth/register", {
+        const res = await axios.post(`/auth/register`, {
             email2,
             first_name,
             last_name,
             password,
         })
-        if (res.data.loggedIn) this.props.history.push("/vacations")
+        if (res.data.loggedIn) this.props.history.push('/vacations')
         else alert("Registration failed")
     }
 
     login = async () => {
         const { email, pass } = this.state
-        const res = await axios.post("/auth/login", { email, pass })
-        if (res.data.loggedIn) this.props.history.push("/vacations")
+        const res = await axios.post('/auth/login', { email, pass })
+        if (res.data.loggedIn) this.props.history.push('/vacations')
         else alert("Login failed")
     }
 
@@ -54,7 +55,7 @@ export default class SingIn extends Component {
                     }
                 >
                     <div className="form-container sign-up-container">
-                        <form action="localhost:3000/#/" autoComplete="off">
+                        <form  autoComplete="off">
                             <h1>Create Account</h1>
                             <div className="social-container">
                                 <a href="localhost:3000/#/" className="social">

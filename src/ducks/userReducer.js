@@ -1,5 +1,6 @@
 import axios from "axios"
 
+
 const initialState = {
     user: {},
     vacation: [],
@@ -11,14 +12,14 @@ const GET_VACAY = "GET_VACAY"
 const GET_LISTS = "GET_LISTS"
 
 export function getData() {
-    let data = axios.get("/auth/user-data").then((res) => res.data)
+    let data = axios.get(`/auth/user-data`).then((res) => res.data)
     return {
         type: GET_DATA,
         payload: data,
     }
 }
 export function getVacay() {
-    let data = axios.get("/api/vacation").then((res) => res.data)
+    let data = axios.get(`/api/vacation`).then((res) => res.data)
     return {
         type: GET_VACAY,
         payload: data,

@@ -8,6 +8,7 @@ import axios from "axios"
 import Input from "./Input"
 import ListInput from "./ListInput"
 
+
 class Dashboard extends Component {
     constructor(props) {
         super(props)
@@ -51,7 +52,7 @@ class Dashboard extends Component {
     }
 
     getLists = async () => {
-        await axios.get("/api/vacation")
+        await axios.get('/api/vacation')
     }
 
     barsClick = () => {

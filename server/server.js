@@ -4,16 +4,17 @@ const massive = require("massive")
 const session = require("express-session")
 const ctrl = require("./controller")
 
-const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, REACT_APP_REDIRECT } = process.env
 
 const app = express()
 
 massive(CONNECTION_STRING).then((db) => {
     app.set("db", db)
     console.log("We Chillin")
-    // console.log(db.listTables())
 })
 
+
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(express.json())
 
 app.use(
@@ -49,7 +50,7 @@ app.delete('/api/list/:id', ctrl.deleteList)
 
 app.get("/logout", (req, res) => {
     req.session.destroy()
-    res.redirect("http://localhost:3000/#/")
+    res.redirect(REACT_APP_REDIRECT)
 })
 
 app.listen(SERVER_PORT, () => {

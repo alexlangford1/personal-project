@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import "./settings.css"
 import { connect } from "react-redux"
 import Unsplash from "./Unsplash"
+require("dotenv").config()
 
 class Settings extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class Settings extends Component {
                         Change Background
                     </div>
 
-                    <a href="http://localhost:7777/logout">
+                    <a href={process.env.REACT_APP_LOGOUT}>
                         <button className="logout">Logout</button>
                     </a>
                 </div>

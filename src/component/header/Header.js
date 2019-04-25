@@ -5,6 +5,7 @@ import { getData, getVacay } from "./../../ducks/userReducer"
 import { Link } from "react-router-dom"
 import axios from "axios"
 
+
 class Header extends Component {
     constructor(props) {
         super(props)
@@ -22,7 +23,7 @@ class Header extends Component {
     addVacation = async () => {
         const { vacationName } = this.state
         console.log(vacationName)
-        await axios.post("/api/vacation", {
+        await axios.post(`/api/vacation`, {
             vacation_name: vacationName,
         })
         this.setState({ vacationName: "" })

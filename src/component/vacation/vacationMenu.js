@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import EditList from "./EditList"
 import axios from "axios"
 
+
 class Vacation extends Component {
     constructor(props) {
         super(props)
