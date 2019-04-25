@@ -14,7 +14,7 @@ massive(CONNECTION_STRING).then((db) => {
 })
 
 
-app.use( express.static( `${__dirname}/../build` ) );
+app.use(express.static( `${__dirname}/../build` ) );
 app.use(express.json())
 
 app.use(
@@ -50,7 +50,7 @@ app.delete('/api/list/:id', ctrl.deleteList)
 
 app.get("/logout", (req, res) => {
     req.session.destroy()
-    res.redirect(REACT_APP_REDIRECT)
+    res.redirect(`${REACT_APP_REDIRECT}`)
 })
 
 app.listen(SERVER_PORT, () => {

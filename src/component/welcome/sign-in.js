@@ -20,7 +20,7 @@ export default class SingIn extends Component {
     register = async () => {
         const { email2, first_name, last_name, password } = this.state
         console.log(email2, first_name, last_name, password)
-        const res = await axios.post(`/auth/register`, {
+        const res = await axios.post('/auth/register', {
             email2,
             first_name,
             last_name,
