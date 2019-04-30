@@ -338,7 +338,7 @@ button:hover {
     }
     .mapped-list {
         margin-top: 11vh;
-        height: 80vh;
+        max-height: 80vh;
         min-width: 85vw;
     }
     .add-list {
