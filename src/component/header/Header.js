@@ -27,6 +27,7 @@ class Header extends Component {
         })
         this.setState({ vacationName: "" })
         this.newClick()
+        this.props.getVacation()
     }
     newClick = () => {
         this.setState({ newVaca: !this.state.newVaca })
@@ -59,7 +60,7 @@ class Header extends Component {
                 </div>
                 <div className={newVaca ? "drop-down" : "drop-down drop-gone"}>
                     <h2 className="h2">Add New Vacation</h2>
-                    <form className="cant-think">
+                    <div className="cant-think">
                         <input
                             type="text"
                             placeholder="New Vacation"
@@ -75,7 +76,7 @@ class Header extends Component {
                         >
                             Add
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         )

@@ -40,6 +40,10 @@ class Vacation extends Component {
     }
 
     componentDidMount = async () => {
+        this.getVacation()
+    }
+    
+    getVacation = async () => {
         await this.props.getData()
         await this.props.getVacay()
         this.setState({ vacations: this.props.vacation })
@@ -96,7 +100,7 @@ class Vacation extends Component {
 
         return (
             <div className="vacation">
-                <Header />
+                <Header getVacation={this.getVacation} />
                 <div className="empty" />
                 {vacayCheck ? (
                     <div className="vacay-boxes">{vacay}</div>

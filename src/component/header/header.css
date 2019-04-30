@@ -179,6 +179,10 @@
     .drop-down {
         margin-right: 13px;
     }
+    .icons {
+        min-width: 115px;
+        margin-left: -20px;
+    }
 }
 @media (max-width: 575px) {
     .icons {
