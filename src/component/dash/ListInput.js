@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import "./dash.css"
-import ActualEditInput from "./ActualEditInput"
+import ActualEditInput from "./actualEditInput"
 
 
 export default class ListInput extends Component {
