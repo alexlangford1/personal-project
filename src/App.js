@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { HashRouter, Switch, Route } from "react-router-dom"
 import Dashboard from "./component/dash/Dashboard"
 import Vacation from "./component/vacation/vacationMenu.js"
-import SignIn from "./component/welcome/Sign-in"
-import Password from "./component/welcome/Recovery"
+import SignIn from "./component/welcome/sign-in"
+import Password from "./component/welcome/List"
 
 export default class App extends Component {
     render() {
