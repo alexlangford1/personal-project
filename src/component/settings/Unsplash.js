@@ -36,8 +36,7 @@ export default class Unsplash extends Component {
                 <SearchForm onSearch={this.performSearch} />
                 <div className="image-list">
                     <ImgList
-                    settingClick={this.props.settingClick}
-
+                        settingClick={this.props.settingClick}
                         vacation_id={this.props.vacation_id}
                         data={this.state.imgs}
                         background={this.props.background}

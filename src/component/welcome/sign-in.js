@@ -1,8 +1,7 @@
 import React, { Component } from "react"
 import "./welcome.css"
 import axios from "axios"
-import { Link } from 'react-router-dom'
-
+import { Link } from "react-router-dom"
 
 export default class SingIn extends Component {
     constructor(props) {
@@ -19,21 +18,20 @@ export default class SingIn extends Component {
     }
     register = async () => {
         const { email2, first_name, last_name, password } = this.state
-        console.log(email2, first_name, last_name, password)
-        const res = await axios.post('/auth/register', {
-            email2,
+        const res = await axios.post("/auth/register", {
+            email: email2,
             first_name,
             last_name,
             password,
         })
-        if (res.data.loggedIn) this.props.history.push('/vacations')
+        if (res.data.loggedIn) this.props.history.push("/vacations")
         else alert("Registration failed")
     }
 
     login = async () => {
         const { email, pass } = this.state
-        const res = await axios.post('/auth/login', { email, pass })
-        if (res.data.loggedIn) this.props.history.push('/vacations')
+        const res = await axios.post("/auth/login", { email, pass })
+        if (res.data.loggedIn) this.props.history.push("/vacations")
         else alert("Login failed")
     }
 
@@ -45,7 +43,7 @@ export default class SingIn extends Component {
         let { toggle } = this.state
         return (
             <div className="size1">
-                <div className='logo7'>
+                <div className="logo7">
                     <div className="logow" />
                 </div>
 
@@ -55,20 +53,22 @@ export default class SingIn extends Component {
                     }
                 >
                     <div className="form-container sign-up-container">
-                        <form  autoComplete="off">
+                        <div className="forms-login login">
                             <h1>Create Account</h1>
                             <div className="social-container">
-                                <a href="localhost:3000/#/" className="social">
+                                <button  className="social">
                                     <i className="fab fa-facebook-f" />
-                                </a>
-                                <a href="localhost:3000/#/" className="social">
+                                </button>
+                                <button  className="social">
                                     <i className="fab fa-google-plus-g" />
-                                </a>
-                                <a href="localhost:3000/#/" className="social">
+                                </button>
+                                <button  className="social">
                                     <i className="fab fa-linkedin-in" />
-                                </a>
+                                </button>
                             </div>
-                            <span className='none'>or use your email for registration</span>
+                            <span className="none">
+                                or use your email for registration
+                            </span>
                             <input type="hidden" value="something" />
                             <input
                                 autoComplete="off"
@@ -95,6 +95,7 @@ export default class SingIn extends Component {
                                 placeholder="Last Name"
                             />
                             <input
+                                required
                                 autoComplete="off"
                                 onChange={(e) =>
                                     this.handleChange("email2", e.target.value)
@@ -104,6 +105,7 @@ export default class SingIn extends Component {
                                 placeholder="Email"
                             />
                             <input
+                                required
                                 autoComplete="off"
                                 onChange={(e) =>
                                     this.handleChange(
@@ -118,24 +120,25 @@ export default class SingIn extends Component {
                             <button onClick={() => this.register()}>
                                 Sign Up
                             </button>
-                        </form>
+                        </div>
                     </div>
                     <div className="form-container sign-in-container">
-                        <form action="localhost:3000/#/" autoComplete="off">
+                        <div className="forms-login">
                             <h1>Sign in</h1>
                             <div className="social-container">
-                                <a href="localhost:3000/#/" className="social">
+                                <button className="social">
                                     <i className="fab fa-facebook-f" />
-                                </a>
-                                <a href="localhost:3000/#/" className="social">
+                                </button>
+                                <button  className="social">
                                     <i className="fab fa-google-plus-g" />
-                                </a>
-                                <a href="localhost:3000/#/" className="social">
+                                </button>
+                                <button  className="social">
                                     <i className="fab fa-linkedin-in" />
-                                </a>
+                                </button>
                             </div>
-                            <span className='none'>or use your account</span>
+                            <span className="none">or use your account</span>
                             <input
+                                required
                                 autoComplete="false"
                                 type="text"
                                 placeholder="Email"
@@ -145,6 +148,7 @@ export default class SingIn extends Component {
                                 value={this.state.email}
                             />
                             <input
+                                required
                                 autoComplete="false"
                                 type="password"
                                 placeholder="Password"
@@ -153,21 +157,20 @@ export default class SingIn extends Component {
                                 }
                                 value={this.state.pass}
                             />
-                            <Link to='/hahalol'>
-                                Forgot your password?
-                            </Link>
+                            <Link to="/password">Forgot your password?</Link>
                             <button onClick={() => this.login()}>
                                 Sign In
                             </button>
-                        </form>
+                        </div>
                     </div>
                     <div className="overlay-container">
                         <div className="overlay">
                             <div className="overlay-panel overlay-left">
                                 <h1>Welcome Back!</h1>
                                 <p>
-                                    To keep connected with us please login with
-                                    your personal info
+                                    Already have an account? <br />
+                                    Keep connected with us! Please login with
+                                    your personal info.
                                 </p>
                                 <button
                                     className="ghost"
@@ -181,8 +184,9 @@ export default class SingIn extends Component {
                             <div className="overlay-panel overlay-right">
                                 <h1>Hello, Friend!</h1>
                                 <p>
-                                    Enter your personal details and start
-                                    journey with us
+                                    Don't have an account? <br />
+                                    Enter your personal details and start your
+                                    journey with us.
                                 </p>
                                 <button
                                     className="ghost"

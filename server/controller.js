@@ -2,8 +2,7 @@ const bcrypt = require("bcryptjs")
 
 module.exports = {
     register: async (req, res) => {
-        const { email2, first_name, last_name, password } = req.body
-        let email = email2
+        const { email, first_name, last_name, password } = req.body
         const db = req.app.get("db")
         const account = await db.get_acc_by_email([email])
         if (account[0]) {
@@ -78,23 +77,17 @@ module.exports = {
     getVacation: async (req, res) => {
         const db = req.app.get("db")
         const { id } = req.session.user
-        // console.log(id)
         const allVacations = await db
             .get_vacation(id)
             .catch((err) => console.log(444444, err))
-        // console.log(555555, allVacations)
         res.status(200).send(allVacations)
     },
     getLists: async (req, res) => {
-        // const { id } = req.session.user
-        // console.log(id)
         const { vacation_id } = req.params
-        // console.log(vacation_id)
         const db = req.app.get("db")
         const lists = await db
             .get_lists([vacation_id])
             .catch((err) => console.log(665656, err))
-        // console.log(555555, lists)
         res.status(200).send(lists)
     },
 
@@ -109,21 +102,23 @@ module.exports = {
         const { id } = req.params
         const db = req.app.get("db")
         await db.delete_list_item([id])
-        res.status(200).send('item deleted')
+        res.status(200).send("item deleted")
     },
 
     deleteVacation: async (req, res) => {
         const { id } = req.params
         const db = req.app.get("db")
-        await db.delete_vacation([id]).catch(err => console.log(777, err))
-        res.status(200).send('vacation deleted')
+        await db.delete_vacation([id]).catch((err) => console.log(777, err))
+        res.status(200).send("vacation deleted")
     },
 
     deleteList: async (req, res) => {
         const { id } = req.params
         const db = req.app.get("db")
-        await db.delete_list([id]).catch(err => console.log('delete list', err))
-        res.status(200).send('list deleted')
+        await db
+            .delete_list([id])
+            .catch((err) => console.log("delete list", err))
+        res.status(200).send("list deleted")
     },
 
     editListItem: async (req, res) => {
@@ -134,7 +129,15 @@ module.exports = {
         res.status(200).send(editListItem)
     },
 
-    editVacation: async (req, res ) => {
+    editTotalBudget: async (req, res) => {
+        const { total_budget } = req.body
+        const { id } = req.params
+        const db = req.app.get("db")
+        const totalBudget = await db.edit_total_budget([id, total_budget])
+        res.status(200).send(totalBudget)
+    },
+
+    editVacation: async (req, res) => {
         const { vacation_name } = req.body
         const { id } = req.params
         const db = req.app.get("db")
@@ -148,7 +151,81 @@ module.exports = {
         const db = req.app.get("db")
         const newBudget = await db.edit_budget([id, budget])
         res.status(200).send(newBudget)
+    },
 
-    }
+    getVacayId: async (req, res) => {
+        const { id } = req.params
+        let vacation = await req.app
+            .get("db")
+            .get_vacation_by_id([id])
+            .catch((err) => console.log("vacation get error", err))
+        res.status(200).send(vacation)
+    },
 
+    getBudget: async (req, res) => {
+        const { id } = req.params
+        let budget = await req.app
+            .get("db")
+            .get_budget([id])
+            .catch((err) => console.log("budget get error", err))
+        res.status(200).send(budget)
+    },
+
+    getTotalBudget: async (req, res) => {
+        const { id } = req.params
+        let budget = await req.app
+            .get("db")
+            .get_total_budget([id])
+            .catch((err) => console.log("budget get error", err))
+        res.status(200).send(budget)
+    },
+
+    checked: async (req, res) => {
+        const { id } = req.params
+        let checked = await req.app
+            .get("db")
+            .get_checked([id])
+            .catch((err) => console.log("checked", err))
+        res.status(200).send(checked)
+    },
+
+    checkedOne: async (req, res) => {
+        const { id } = req.params
+        const { checked1 } = req.body
+        let checked = await req.app
+            .get("db")
+            .edit_checked1([id, checked1])
+            .catch((err) => console.log("checked1", err))
+        res.status(200).send(checked)
+    },
+
+    checkedTwo: async (req, res) => {
+        const { id } = req.params
+        const { checked2 } = req.body
+        let checked = await req.app
+            .get("db")
+            .edit_checked2([id, checked2])
+            .catch((err) => console.log("checked2", err))
+        res.status(200).send(checked)
+    },
+
+    checkedThree: async (req, res) => {
+        const { id } = req.params
+        const { checked3 } = req.body
+        let checked = await req.app
+            .get("db")
+            .edit_checked3([id, checked3])
+            .catch((err) => console.log("checked3", err))
+        res.status(200).send(checked)
+    },
+
+    checkedFour: async (req, res) => {
+        const { id } = req.params
+        const { checked4 } = req.body
+        let checked = await req.app
+            .get("db")
+            .edit_checked4([id, checked4])
+            .catch((err) => console.log("checked4", err))
+        res.status(200).send(checked)
+    },
 }

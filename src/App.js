@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import { HashRouter, Switch, Route } from "react-router-dom"
 import Dashboard from "./component/dash/Dashboard"
-import Vacation from './component/vacation/vacationMenu'
-import SignIn from './component/welcome/sign-in'
-import Joke from './component/lists/Lists'
+import Vacation from "./component/vacation/VacationMenu"
+import SignIn from "./component/welcome/Sign-in"
+import Password from "./component/welcome/Recovery"
 
 export default class App extends Component {
     render() {
@@ -11,9 +11,12 @@ export default class App extends Component {
             <HashRouter>
                 <Switch>
                     <Route path="/" exact component={SignIn} />
-                    <Route path="/dashboard/:vacation_id" component={Dashboard} />
+                    <Route
+                        path="/dashboard/:vacation_id"
+                        component={Dashboard}
+                    />
                     <Route path="/vacations" component={Vacation} />
-                    <Route path="/hahalol" component={Joke} />
+                    <Route path="/password" component={Password} />
                 </Switch>
             </HashRouter>
         )

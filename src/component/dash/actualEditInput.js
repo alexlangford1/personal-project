@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./dash.css"
 import axios from "axios"
-import { getLists } from "./../../ducks/userReducer"
+import { getLists } from "../../ducks/userReducer"
 import { connect } from "react-redux"
 
 
@@ -42,7 +42,6 @@ class ActualEditInput extends Component {
 
     handleEdit = async (id) => {
         let { editText } = this.state
-        console.log(id)
         await axios
             .put(`/api/list-item/${id}`, { list_item_name: editText })
             .catch((err) => console.log("edit error", err))

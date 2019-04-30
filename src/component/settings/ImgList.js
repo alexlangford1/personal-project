@@ -30,9 +30,7 @@ class ImgList extends Component {
                 />
             ))
         }
-        return (
-            <section className="img-list">{imgs}</section>
-        )
+        return <section className="img-list">{imgs}</section>
     }
 }
 

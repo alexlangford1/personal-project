@@ -9,6 +9,13 @@
     top: 0px;
     z-index: 10;
 }
+
+.top-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .wander {
     width: 160px;
     height: 10vh;
@@ -153,10 +160,8 @@
     color: rgb(27, 27, 27);
 }
 .fa-home {
-    
     margin-left: 25px;
     margin-right: 73px;
-
 }
 .house {
     text-decoration: none;
@@ -171,18 +176,17 @@
     .logob {
         float: left;
     }
-    .logo1 {
-        margin-left: -70px;
-        transform: scale(0.8);
-    }
     .drop-down {
-        margin-right: 13px
+        margin-right: 13px;
     }
-    
 }
 @media (max-width: 575px) {
     .icons {
         transform: scale(0.8);
+    }
+    .logo1 {
+        margin-left: -70px;
+        transform: scale(0.7);
     }
     .fa-home {
         display: none;

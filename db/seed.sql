@@ -13,6 +13,10 @@ CREATE TABLE "users"
     "first_name" varchar(100) NOT NULL,
     "last_name" varchar(100) NOT NULL,
     "password" varchar(100) NOT NULL,
+    "checked1" boolean default true,
+    "checked2" boolean default true,
+    "checked3" boolean default true,
+    "checked4" boolean default true,
     CONSTRAINT users_pk PRIMARY KEY ("id")
 );
 
@@ -45,6 +49,7 @@ CREATE TABLE "vacation"
     "vacation_id" serial NOT NULL,
     "users_id" int NOT NULL,
     "vacation_name" varchar(100) NOT NULL,
+    "total_budget" int,
     "days" int,
     CONSTRAINT vacation_pk PRIMARY KEY ("vacation_id")
 );

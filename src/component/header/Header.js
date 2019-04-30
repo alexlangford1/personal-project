@@ -1,10 +1,9 @@
 import React, { Component } from "react"
 import "./header.css"
 import { connect } from "react-redux"
-import { getData, getVacay } from "./../../ducks/userReducer"
+import { getData, getVacayById, getBudget } from "./../../ducks/userReducer"
 import { Link } from "react-router-dom"
 import axios from "axios"
-
 
 class Header extends Component {
     constructor(props) {
@@ -17,12 +16,12 @@ class Header extends Component {
         }
     }
 
-    async componentDidMount() {
+    componentDidMount = async () => {
         await this.props.getData()
     }
+
     addVacation = async () => {
         const { vacationName } = this.state
-        console.log(vacationName)
         await axios.post(`/api/vacation`, {
             vacation_name: vacationName,
         })
@@ -37,13 +36,15 @@ class Header extends Component {
         const { newVaca } = this.state
         return (
             <div className="app">
-                <Link className="house" to="/vacations">
-                    <i className="fas fa-home fa-2x nope" />
-                </Link>
+                <div className="top-left">
+                    <Link className="house" to="/vacations">
+                        <i className="fas fa-home fa-2x nope" />
+                    </Link>
+                </div>
                 <div className="logo1">
                     <div className="logob">
-                        <Link to="/vacations" >
-                        <div className='wander'></div>
+                        <Link to="/vacations">
+                            <div className="wander" />
                         </Link>
                     </div>
                 </div>
@@ -84,5 +85,5 @@ const mapState = (state) => state
 
 export default connect(
     mapState,
-    { getData, getVacay },
+    { getData, getVacayById, getBudget },
 )(Header)

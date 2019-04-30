@@ -1,12 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import "./vacation.css"
-import { getVacay, getData } from "./../../ducks/userReducer"
+import { getVacay, getData } from "../../ducks/userReducer"
 import Header from "../header/Header"
 import { Link } from "react-router-dom"
 import EditList from "./EditList"
 import axios from "axios"
-
 
 class Vacation extends Component {
     constructor(props) {
@@ -65,7 +64,7 @@ class Vacation extends Component {
                 style={{
                     backgroundImage: `url(
                         ${localStorage.getItem(`imageUrl${e.vacation_id}`) ||
-                            "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjYyNzQ3fQ"})`
+                            "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjYyNzQ3fQ"})`,
                 }}
                 className="vacay-map"
             >

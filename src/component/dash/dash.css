@@ -1,16 +1,16 @@
-*{
-    font-family: 'Raleway', sans-serif;
+* {
+    font-family: "Raleway", sans-serif;
 }
 
-.joke {
+.oopps {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
-    background: blue;
     height: 100vh;
-    color: white;
-    font-size: 5rem;
+    color: black;
+    font-size: 1.5rem;
 }
 
 .body {
@@ -33,7 +33,6 @@
     align-items: center;
 }
 
-
 .drop-down {
     width: 300px;
     height: 100px;
@@ -52,8 +51,8 @@
 }
 
 .menu {
-    background: linear-gradient(to bottom,  #802002, rgb(206, 206, 206));
-    
+    background: linear-gradient(to bottom, #8a8a8a, rgb(46, 46, 46));
+
     position: absolute;
     right: 0px;
     top: 9vh;
@@ -75,7 +74,7 @@
     min-width: 290px;
     max-width: 290px;
     background: #dfe3e6;
-    margin: 11vh 0px 0px 14px;
+    margin: 15.5vh 0px 0px 14px;
     color: #17394d;
     display: flex;
     justify-content: flex-start;
@@ -84,7 +83,7 @@
     overflow: scroll;
     word-wrap: break-word;
     height: min-content;
-    max-height: 86vh;
+    max-height: 83vh;
     border-radius: 15px;
 }
 .list-title {
@@ -98,11 +97,27 @@
     border-radius: 10px;
     font-size: 1.3rem;
     margin-bottom: 10px;
+}
 
+.budget-vacay {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    min-width: 100vw;
+    height: 5vh;
+    font-size: 1.3rem;
+    margin-top: 9vh;
+
+    background: #02020277;
+}
+
+.title-display {
+    margin: 0px 35px;
 }
 
 .add-list {
-    margin-top: 11vh;
+    margin-top: 15.5vh;
     height: 50px;
     background: #dfe3e6;
     border-radius: 10px;
@@ -138,7 +153,6 @@
     margin-bottom: 9px;
     box-shadow: 0px 2px 3px rgb(129, 129, 141);
     word-wrap: break-word;
-
 }
 
 .list--- {
@@ -152,7 +166,6 @@
 .delete-l:hover {
     background: #6d6e6e52;
     color: #ffffff;
-
 }
 .delete-l {
     position: relative;
@@ -162,7 +175,6 @@
 }
 
 .lists-111 {
-    
     position: -webkit-sticky;
     position: sticky;
     bottom: 0px;
@@ -175,20 +187,16 @@
     justify-content: space-evenly;
     padding-bottom: 7px;
     flex-direction: column;
-
 }
 
 .lists-input {
     display: flex;
     justify-content: space-evenly;
     width: 290px;
-
 }
 .total {
     margin-bottom: 5px;
-    
 }
-
 
 .lists-111 input {
     border: none;
@@ -216,12 +224,9 @@ button:hover {
     padding: 5px;
     border-radius: 5px;
     outline: none;
-
-    
 }
-.list-item button{
+.list-item button {
     background: none;
-
 }
 .list-bars {
     float: right;
@@ -238,7 +243,6 @@ button:hover {
 }
 .list-bars:hover {
     background: rgb(210, 210, 211);
-
 }
 .edit-list {
     position: relative;
@@ -248,10 +252,9 @@ button:hover {
     flex-direction: column;
     align-items: center;
     min-height: 280px;
-    background: rgb(8, 8, 8, .71);
+    background: rgb(8, 8, 8, 0.71);
     z-index: 20;
     border-radius: 15px;
-
 }
 .input-edit {
     width: 240px;
@@ -268,8 +271,6 @@ button:hover {
     word-wrap: break-word;
     margin-bottom: 15px;
     font-size: 1rem;
-
-
 }
 .edit-gone {
     display: none;
@@ -302,21 +303,21 @@ button:hover {
     flex-direction: column;
 }
 .buttons button {
-    margin: 5px 19px; 
+    margin: 5px 19px;
     outline: none;
     border: none;
     padding: 5px 9px;
-    background: rgb(8, 8, 8, .71);
+    background: rgb(8, 8, 8, 0.71);
     border-radius: 5px;
     color: white;
     font-size: 1.05rem;
 }
 
-.buttons button:hover{
-    background: rgb(8, 8, 8, .91);
+.buttons button:hover {
+    background: rgb(8, 8, 8, 0.91);
     transform: translateX(6px);
-    transition:  ease-out .15s;
-} 
+    transition: ease-out 0.15s;
+}
 .fa-dollar-sign {
     padding: 0;
     margin: 0;
@@ -329,6 +330,25 @@ button:hover {
     top: 5px;
     padding: 0px 0px 10px 10px;
     font-weight: 500;
-    z-index: 1;
+}
 
+@media (max-width: 800px) {
+    .budget-vacay {
+        display: none;
+    }
+    .mapped-list {
+        margin-top: 11vh;
+        height: 80vh;
+        min-width: 85vw;
+    }
+    .add-list {
+        margin-top: 11vh;
+    }
+}
+
+@media (max-width: 440px) {
+    .menu {
+        width: 100vw;
+    }
+    
 }

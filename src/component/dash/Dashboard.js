@@ -2,12 +2,19 @@ import React, { Component } from "react"
 import Header from "../header/Header"
 import Settings from "../settings/SettingsMenu"
 import "./dash.css"
-import { getData, getLists } from "./../../ducks/userReducer"
+import {
+    getData,
+    getLists,
+    getVacay,
+    getVacayById,
+    getBudget,
+    getTotalBudget,
+    checked,
+} from "./../../ducks/userReducer"
 import { connect } from "react-redux"
 import axios from "axios"
 import Input from "./Input"
 import ListInput from "./ListInput"
-
 
 class Dashboard extends Component {
     constructor(props) {
@@ -22,13 +29,65 @@ class Dashboard extends Component {
             listNameState: "",
             listItem: "",
             addList: false,
+            vacationListName: "",
+            budget1: "",
+            editTotalBudget: "",
+            totalBudget: "",
+            remainder: "",
+            checked1: false,
+            checked2: false,
+            checked3: false,
+            checked4: false,
         }
     }
     componentDidMount = async () => {
         this.background()
         await this.props.getData()
         this.update()
+        const { vacation_id } = this.props.match.params
+        await this.props.getData()
+        if (vacation_id) {
+            await this.props.getVacayById(vacation_id)
+            let vacation = this.props.vacationID[0].vacation_name
+            this.setState({ vacationListName: vacation })
+        }
+        this.budget()
+        await this.getTotalBudget()
+        this.getRemainder()
+        this.getCheck()
     }
+
+    getCheck = async () => {
+        await this.props.getData()
+        const { id } = this.props.user
+        await this.props.checked(id)
+        let check1 = this.props.check[0].checked1
+        let check2 = this.props.check[0].checked2
+        let check3 = this.props.check[0].checked3
+        let check4 = this.props.check[0].checked4
+        this.setState({
+            checked1: check1,
+            checked2: check2,
+            checked3: check3,
+            checked4: check4,
+        })
+    }
+
+    getRemainder = () => {
+        let { budget1, totalBudget } = this.state
+        let remainder = totalBudget - budget1
+        this.setState({ remainder: remainder })
+    }
+
+    getTotalBudget = async () => {
+        const { vacation_id } = this.props.match.params
+        let id = vacation_id
+        await this.props.getTotalBudget(id)
+        let budget = this.props.totalBudget[0].total_budget
+        await this.setState({ totalBudget: budget })
+        this.getRemainder()
+    }
+
     background = () => {
         const { vacation_id } = this.props.match.params
         this.setState({
@@ -41,6 +100,7 @@ class Dashboard extends Component {
         this.setState({
             listName: this.props.lists,
         })
+        this.budget()
     }
 
     handleClick = () => {
@@ -52,7 +112,7 @@ class Dashboard extends Component {
     }
 
     getLists = async () => {
-        await axios.get('/api/vacation')
+        await axios.get("/api/vacation")
     }
 
     barsClick = () => {
@@ -115,10 +175,31 @@ class Dashboard extends Component {
     updateInput = (e) => {
         this.setState({ listItem: e })
     }
-    
+
+    budget = async () => {
+        const { vacation_id } = this.props.match.params
+        if (vacation_id) {
+            await this.props.getBudget(vacation_id)
+            let budgetSum = this.props.budget[0].sum
+            await this.setState({ budget1: budgetSum })
+            this.getRemainder()
+        }
+    }
+
     render() {
         const { vacation_id } = this.props.match.params
-        const { settingMenu, listName } = this.state
+        const {
+            settingMenu,
+            listName,
+            vacationListName,
+            budget1,
+            totalBudget,
+            remainder,
+            checked1,
+            checked2,
+            checked3,
+            checked4,
+        } = this.state
         let mappedLists = listName.map((e) => {
             let total = e.budget.reduce((acc, curr) => {
                 return acc + curr
@@ -163,9 +244,31 @@ class Dashboard extends Component {
                 }}
             >
                 <Header
+                    list={listName}
+                    vacation_id={vacation_id}
                     settingClick={this.settingClick}
                     barsClick={this.barsClick}
                 />
+                <div className="budget-vacay">
+                    {vacationListName && checked1 ? (
+                        <div className="title-display">
+                            {vacationListName} Vacation!
+                        </div>
+                    ) : null}
+                    {totalBudget && checked2 ? (
+                        <div className="title-display">
+                            Total Budget: ${totalBudget}
+                        </div>
+                    ) : null}
+                    {budget1 && checked3 ? (
+                        <div className="title-display">
+                            Planned Expenses: ${budget1}
+                        </div>
+                    ) : null}
+                    {remainder && checked4 ? (
+                        <div>Amount Remaining: ${remainder}</div>
+                    ) : null}
+                </div>
                 {mappedLists}
                 <div className="add-list">
                     <input
@@ -180,6 +283,12 @@ class Dashboard extends Component {
                 </div>
                 <div className={settingMenu ? "menu" : "menu gone"}>
                     <Settings
+                        totalBudget1={totalBudget}
+                        budget1={budget1}
+                        remainder={remainder}
+                        vacationListName={vacationListName}
+                        getCheck={this.getCheck}
+                        getTotalBudget={this.getTotalBudget}
                         vacation_id={vacation_id}
                         background={this.background}
                         settingClick={this.settingClick}
@@ -193,5 +302,13 @@ const mapState = (state) => state
 
 export default connect(
     mapState,
-    { getData, getLists },
+    {
+        getData,
+        getLists,
+        getVacay,
+        getVacayById,
+        getBudget,
+        getTotalBudget,
+        checked,
+    },
 )(Dashboard)
