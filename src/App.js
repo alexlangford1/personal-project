@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { HashRouter, Switch, Route } from "react-router-dom"
 import Dashboard from "./component/dash/Dashboard"
-import Vacation from "./component/vacation/VacationMenu"
+import Vacation from "./component/vacation/vacationMenu.js"
 import SignIn from "./component/welcome/Sign-in"
 import Password from "./component/welcome/Recovery"
 
