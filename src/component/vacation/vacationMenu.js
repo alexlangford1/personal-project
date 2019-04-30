@@ -12,6 +12,7 @@ class Vacation extends Component {
         super(props)
 
         this.state = {
+            
             vacations: [],
             newVaca: false,
             vacayCheck: false,
