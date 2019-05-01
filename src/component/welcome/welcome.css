@@ -1,7 +1,32 @@
 
+
 * {
     box-sizing: border-box;
 }
+
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 2px;
+    background-color: #ab231a;
+    font-size: 12px;
+    border: 1px solid #ab231a;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .swal-button:not([disabled]):hover {
+    background-color: #8a2a24;
+
+  }
+  .swal-button:active {
+    background-color: #8a2a24;
+      
+  }
+  .swal-button:focus {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(36, 4, 4, 0.29);
+  }
+  .swal-text {
+      font-size: 1.4rem;
+  }
 
 .size1 {
     display: flex;

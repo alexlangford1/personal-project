@@ -21,6 +21,7 @@ module.exports = {
             email: newAcc[0].email,
             first_name: newAcc[0].first_name,
             last_name: newAcc[0].last_name,
+            newUser: true,
         }
         res.status(200).send({
             message: "logged in",
@@ -40,13 +41,14 @@ module.exports = {
         }
         const result = bcrypt.compareSync(pass, account[0].password)
         if (!result) {
-            return res.status(401).send({ message: "Incorrect password." })
+            return res.status(200).send({ message: "Incorrect password." })
         }
         req.session.user = {
             id: account[0].id,
             email: account[0].email,
             first_name: account[0].first_name,
             last_name: account[0].last_name,
+
         }
         res.status(200).send({
             message: "Log in successful",

@@ -58,6 +58,7 @@
     align-items: center;
     width: 120px;
     margin-right: 25px;
+    cursor: pointer;
 }
 
 .fas {

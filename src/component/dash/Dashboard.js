@@ -15,6 +15,7 @@ import { connect } from "react-redux"
 import axios from "axios"
 import Input from "./Input"
 import ListInput from "./ListInput"
+import swal from 'sweetalert'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -50,6 +51,10 @@ class Dashboard extends Component {
             await this.props.getVacayById(vacation_id)
             let vacation = this.props.vacationID[0].vacation_name
             this.setState({ vacationListName: vacation })
+        }
+        let {newUser} = this.props.user
+        if(newUser){
+            swal('From here you can add lists to plan your vacation! Also try changing your vacation background or adding your vacation budget in settings:)')
         }
         this.budget()
         await this.getTotalBudget()
@@ -272,6 +277,7 @@ class Dashboard extends Component {
                 {mappedLists}
                 <div className="add-list">
                     <input
+                        placeholder='Add New List'
                         className=""
                         type="text"
                         value={this.state.listNameState}
@@ -279,7 +285,7 @@ class Dashboard extends Component {
                             this.setState({ listNameState: e.target.value })
                         }
                     />
-                    <button onClick={() => this.newList()}>Add new list</button>
+                    <button onClick={() => this.newList()}>Add List</button>
                 </div>
                 <div className={settingMenu ? "menu" : "menu gone"}>
                     <Settings

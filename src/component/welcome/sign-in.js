@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import "./welcome.css"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import swal from "sweetalert"
 
 export default class SingIn extends Component {
     constructor(props) {
@@ -25,14 +26,14 @@ export default class SingIn extends Component {
             password,
         })
         if (res.data.loggedIn) this.props.history.push("/vacations")
-        else alert("Registration failed")
+        else swal("Registration failed")
     }
 
     login = async () => {
         const { email, pass } = this.state
         const res = await axios.post("/auth/login", { email, pass })
         if (res.data.loggedIn) this.props.history.push("/vacations")
-        else alert("Login failed")
+        else swal('Login failed')
     }
 
     handleChange = (name, value) => {
@@ -56,13 +57,13 @@ export default class SingIn extends Component {
                         <div className="forms-login login">
                             <h1>Create Account</h1>
                             <div className="social-container">
-                                <button  className="social">
+                                <button className="social">
                                     <i className="fab fa-facebook-f" />
                                 </button>
-                                <button  className="social">
+                                <button className="social">
                                     <i className="fab fa-google-plus-g" />
                                 </button>
-                                <button  className="social">
+                                <button className="social">
                                     <i className="fab fa-linkedin-in" />
                                 </button>
                             </div>
@@ -129,16 +130,15 @@ export default class SingIn extends Component {
                                 <button className="social">
                                     <i className="fab fa-facebook-f" />
                                 </button>
-                                <button  className="social">
+                                <button className="social">
                                     <i className="fab fa-google-plus-g" />
                                 </button>
-                                <button  className="social">
+                                <button className="social">
                                     <i className="fab fa-linkedin-in" />
                                 </button>
                             </div>
                             <span className="none">or use your account</span>
                             <input
-                                required
                                 autoComplete="false"
                                 type="text"
                                 placeholder="Email"
@@ -148,7 +148,6 @@ export default class SingIn extends Component {
                                 value={this.state.email}
                             />
                             <input
-                                required
                                 autoComplete="false"
                                 type="password"
                                 placeholder="Password"

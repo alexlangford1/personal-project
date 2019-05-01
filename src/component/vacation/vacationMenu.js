@@ -6,6 +6,7 @@ import Header from "../header/Header"
 import { Link } from "react-router-dom"
 import EditList from "./EditList"
 import axios from "axios"
+import swal from 'sweetalert'
 
 class Vacation extends Component {
     constructor(props) {
@@ -40,7 +41,11 @@ class Vacation extends Component {
     }
 
     componentDidMount = async () => {
-        this.getVacation()
+        await this.getVacation()
+        let { newUser, first_name } = this.props.user
+       if(newUser){
+           swal(`Hello ${first_name}! To start, add a vacation by pressing the plus button in the top right corner`)
+       }
     }
     
     getVacation = async () => {
@@ -107,7 +112,6 @@ class Vacation extends Component {
                 ) : (
                     <div className="blur">
                         <h1>Looking for your vacations,</h1>
-                        <h1>Please add one to start.</h1>
                     </div>
                 )}
             </div>
