@@ -8,6 +8,8 @@ import EditList from "./EditList"
 import axios from "axios"
 import swal from 'sweetalert'
 
+
+
 class Vacation extends Component {
     constructor(props) {
         super(props)
@@ -111,7 +113,7 @@ class Vacation extends Component {
                     <div className="vacay-boxes">{vacay}</div>
                 ) : (
                     <div className="blur">
-                        <h1>Looking for your vacations,</h1>
+                        <h1>Looking for your vacations...</h1>
                     </div>
                 )}
             </div>

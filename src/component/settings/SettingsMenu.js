@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import Unsplash from "./Unsplash"
 import Checkbox from "./CheckBox"
 import { checked, getData } from "./../../ducks/userReducer"
+import styled from "styled-components"
 require("dotenv").config()
 
 class Settings extends Component {
@@ -82,18 +83,6 @@ class Settings extends Component {
         this.setState({ checkBox: !this.state.checkBox, toggle: false })
     }
 
-    // handleCheckboxChange = (event) =>
-    //     this.setState({ checked: event.target.checked })
-
-    // handleCheckboxChange1 = (event) =>
-    //     this.setState({ checked1: event.target.checked })
-
-    // handleCheckboxChange2 = (event) =>
-    //     this.setState({ checked2: event.target.checked })
-
-    // handleCheckboxChange3 = (event) =>
-    //     this.setState({ checked3: event.target.checked })
-
     editBudget = async () => {
         let { totalBudget } = this.state
         let { vacation_id } = this.props
@@ -143,9 +132,8 @@ class Settings extends Component {
                             }
                         >
                             <div>
-                                <input
+                                <CheckInput
                                     value={totalBudget}
-                                    className="budget-input"
                                     placeholder="Total Budget"
                                     onChange={(e) =>
                                         this.setState({
@@ -155,12 +143,12 @@ class Settings extends Component {
                                     type="text"
                                 />
                             </div>
-                            <button
+                            <SettingsButton
                                 onClick={() => this.editBudget()}
                                 className="logout"
                             >
                                 Add budget
-                            </button>
+                            </SettingsButton>
                         </div>
                         <div
                             onClick={() => this.checkBoxToggle()}
@@ -173,36 +161,36 @@ class Settings extends Component {
                                 checkBox ? "check-box" : "check-box close"
                             }
                         >
-                            <div className="check-box2">
-                                <label onClick={() => this.click1()}>
+                            <CheckBoxDiv>
+                                <CheckLabel onClick={() => this.click1()}>
                                     <Checkbox
                                         checked={checked1}
                                         onChange={this.handleCheckboxChange}
                                     />
-                                    <span>Vacation Name</span>
-                                </label>
-                                <label onClick={() => this.click2()}>
+                                    <Span>Vacation Name</Span>
+                                </CheckLabel>
+                                <CheckLabel onClick={() => this.click2()}>
                                     <Checkbox
                                         checked={this.state.checked2}
                                         onChange={this.handleCheckboxChange1}
                                     />
-                                    <span>Total Budget</span>
-                                </label>
-                                <label onClick={() => this.click3()}>
+                                    <Span>Total Budget</Span>
+                                </CheckLabel>
+                                <CheckLabel onClick={() => this.click3()}>
                                     <Checkbox
                                         checked={this.state.checked3}
                                         onChange={this.handleCheckboxChange2}
                                     />
-                                    <span>Planned Expenses</span>
-                                </label>
-                                <label onClick={() => this.click4()}>
+                                    <Span>Planned Expenses</Span>
+                                </CheckLabel>
+                                <CheckLabel onClick={() => this.click4()}>
                                     <Checkbox
                                         checked={this.state.checked4}
                                         onChange={this.handleCheckboxChange3}
                                     />
-                                    <span>Amount Remaining</span>
-                                </label>
-                            </div>
+                                    <Span>Amount Remaining</Span>
+                                </CheckLabel>
+                            </CheckBoxDiv>
                         </div>
                         <div className="display-none">
                             <div className="title-display">
@@ -218,7 +206,9 @@ class Settings extends Component {
                         </div>
                     </div>
                     <a href={process.env.REACT_APP_LOGOUT}>
-                        <button className="logout">Logout</button>
+                        <SettingsButton className="logout">
+                            Logout
+                        </SettingsButton>
                     </a>
                 </div>
             </div>
@@ -252,3 +242,42 @@ export default connect(
     mapState,
     { checked, getData },
 )(Settings)
+
+const CheckBoxDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    
+`
+
+const CheckLabel = styled.label`
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.25s smooth;
+    ${Span}:hover {
+        transform: scale(1.015);
+    }
+`
+
+const CheckInput = styled.input`
+    width: 160px;
+    height: 30px;
+    font-size: 1rem;
+    height: 35px;
+`
+const SettingsButton = styled.button`
+    border: none;
+    background: #f5f6f7;
+    padding: 7px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 3px rgb(129, 129, 141);
+    outline: none;
+    font-size: 1.1rem;
+`
+
+const Span = styled.span`
+    font-size: 1.2rem;
+`
+

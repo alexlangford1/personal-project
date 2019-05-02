@@ -34,8 +34,7 @@ const StyledCheckbox = styled.div`
   background: ${(props) => (props.checked ? "#802002" : "white")}
   border-radius: 3px;
   transition: all 150ms;
-
-  ${HiddenCheckbox}:focus + & {
+  ${HiddenCheckbox}:focus {
     box-shadow: 0 0 0 3px #808080;
   }
 

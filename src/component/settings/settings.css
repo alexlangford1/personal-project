@@ -30,10 +30,7 @@
 }
 
 .budget-input {
-    width: 160px;
-    height: 30px;
-    font-size: 1rem;
-    height: 35px;
+    
 }
 
 .change-budget {
@@ -50,16 +47,7 @@
     flex-direction: column;
 }
 
-.check-box2 {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-}
-.check-box2 label {
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-}
+
 
 .edit-budget {
     display: flex;
@@ -138,15 +126,6 @@
     display: none;
 }
 
-.logout {
-    border: none;
-    background: #f5f6f7;
-    padding: 7px;
-    border-radius: 5px;
-    box-shadow: 0px 2px 3px rgb(129, 129, 141);
-    outline: none;
-    font-size: 1.1rem;
-}
 .fa-arrow-left {
     background: none;
     font-size: 1.2rem;
